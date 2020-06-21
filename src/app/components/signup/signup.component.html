@@ -1,0 +1,47 @@
+<div class="wrapper fadeInDown">
+    <div id="formContent">
+      <div class="fadeIn first login-header-color text-white py-3">
+        <h2>Sign Up</h2>
+      </div>
+      <!-- <form [formGroup]="RegisterForm"> -->
+        <div class="container">
+          <div class="row">
+            <div class="col-md-8 offset-md-2"> 
+              <div class="example-container pt-5">
+                  <mat-form-field>
+                    <!-- <input type="text" matInput placeholder="First name" formControlName="fname" [class.invalid]="!RegisterForm.controls.fname.valid && (RegisterForm.controls.fname.dirty || submitAttempt)"> -->
+
+                    <input type="text" matInput placeholder="First name" >
+                  </mat-form-field>
+                  <!-- <mat-error class="error-message" *ngIf="!RegisterForm.controls.fname.valid && (RegisterForm.controls.fname.dirty || submitAttempt)">
+                    *Please Enter Valid Input
+                  </mat-error> -->
+                  <mat-form-field>
+                    <input type="text" matInput placeholder="Last name">
+                  </mat-form-field>
+                  <mat-form-field>
+                    <input type="email" matInput placeholder="Enter your email">
+                  </mat-form-field>
+                  <mat-form-field>
+                    <input matInput placeholder="Enter your password" [type]="hide ? 'password' : 'text'">
+                      <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+                      <mat-icon><img src="assets/img/visibility_off_black.png" *ngIf="hide" />  <img src="assets/img/visibility_black.png"  *ngIf="!hide" /> </mat-icon>
+                    </button>
+                  </mat-form-field>
+                  <mat-form-field>
+                      <!-- <input matInput placeholder="Enter organization name" type="url" formControlName="url" > -->
+                    <input matInput placeholder="Enter organization name" type="url" >
+                  </mat-form-field>
+                  <div class="example-button-row pt-3 mb-4 pb-5">
+                    <button mat-raised-button color="accent" routerLink="/login">Sign Up</button>
+                  </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      <!-- </form> -->
+    </div>
+  </div> 
+
+
+  

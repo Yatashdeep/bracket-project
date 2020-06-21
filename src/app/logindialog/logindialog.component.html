@@ -1,0 +1,18 @@
+<div class="div-box">
+    <div class="container">
+      <div *ngIf="loader==true"  class="row">
+      <h5 class="py-4 mx-88 text-center">Please wait..</h5>
+      <div class="text-center mat-spinner-custom">
+        <mat-spinner  strokeWidth="3"  ></mat-spinner>
+      </div>
+    
+    </div>
+    <div *ngIf="loader==false">
+        <h5 style="font-size: 2.1rem;" class="py-4 text-center">{{msg}}</h5>
+        <div mat-dialog-actions style="display: flex;justify-content: center;">
+           
+            <button color="accent"  mat-raised-button (click)="close()" cdkFocusInitial>Ok</button>
+          </div>
+    </div>
+  </div>
+</div>

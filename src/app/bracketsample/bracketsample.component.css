@@ -1,0 +1,65 @@
+.top{border-top: 1px solid #000}
+.bottom{border-bottom: 1px solid #000}
+.left{border-left: 1px solid #000}
+.right{border-right: 1px solid #000}
+.bottom-right{border-bottom:1px solid #000;border-right:1px solid #000}
+.top-right-bottom{border-top:1px solid #000;border-bottom:1px solid #000;border-right:1px solid #000}
+.top-right{border-top:1px solid #000;border-right:1px solid #000}
+.row-display-none{display:none}
+  td {
+    width: 100px;
+    /* height: 35px; */
+ }
+span {
+    font-size: 10px;
+    display: block;
+}
+.nmt-28{
+    margin-top: -28px;
+}
+.nmb-28{
+    margin-bottom: -28px;
+}
+table{
+    border-collapse: initial;
+    border-spacing: 0px;
+}
+.brckets table{
+    margin-left: auto;
+    margin-right: auto;
+} 
+.brckets tr{
+    height: 24px;
+}
+.brckets td {
+    padding: 0;
+}
+
+.one {
+    background-color: #28a745;
+}
+
+.two {
+    background-color: #28a745;
+}
+.three {
+    background-color: #28a745;
+}
+.four {
+    background-color: #28a745;
+}
+.five {
+    background-color: #28a745;
+}
+.six {
+    background-color: #28a745;
+}
+.seven {
+    background-color: #28a745;
+}
+.eight {
+    background-color: #28a745;
+}
+.nine {
+    background-color: #28a745;
+}

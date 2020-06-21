@@ -1,0 +1,477 @@
+<app-toolbarpage></app-toolbarpage>
+
+<!-- upcomming event section Start -->
+<section class="events bg-light mt-68 pt-4">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12">
+          <h4 class="py-2"><span class="border-left-custom"></span>Events From <span class="orange-color pl-2">14Th Oct</span></h4>
+        </div>
+        <div class="">
+          <div class="container mt-2">
+            <div class="row">
+              <div class="col-md-3">
+                <div class="event-name">
+                  <!-- <ul class="nav nav-pills pt-3">
+                    <li class="nav-item">
+                      <a class="nav-link active" data-toggle="pill" role="tab">Upcoming Event</a>
+                    </li>
+                    <li class="nav-item">
+                      <a class="nav-link" data-toggle="pill"  role="tab">Past Event</a>
+                    </li>
+                  </ul> -->
+                  <ul class="nav nav-pills mt-3" id="pills-tab" role="tablist">
+                    <li class="nav-item">
+                      <a class="nav-link active" id="pills-upcoming-event-tab" data-toggle="pill" href="#pills-upcoming-event" role="tab" aria-controls="pills-upcoming-event" aria-selected="true">Upcoming Event</a>
+                    </li>
+                    <li class="nav-item">
+                      <a class="nav-link" id="pills-past-event-tab" data-toggle="pill" href="#pills-past-event" role="tab" aria-controls="pills-past-event" aria-selected="false">Past Event</a>
+                    </li>
+                  </ul>
+
+                </div>
+              </div>
+              <div class="col-md-2">
+                <form class="example-form">
+                  <mat-form-field class="example-full-width">
+                    <input matInput placeholder="Enter Event Name">
+                  </mat-form-field>
+                </form>
+              </div>
+              <div class="col-md-2">
+                <form class="example-form">
+                  <mat-form-field class="example-full-width">
+                    <input matInput placeholder="Enter City">
+                  </mat-form-field>
+                </form>
+              </div>
+              <div class="col-md-2">
+                <p>
+                  <mat-form-field>
+                    <input matInput [matDatepicker]="dp3" placeholder="Start Date" disabled>
+                    <mat-datepicker-toggle matSuffix [for]="dp3"></mat-datepicker-toggle>
+                    <mat-datepicker #dp3 disabled="false"></mat-datepicker>
+                  </mat-form-field>
+                </p>
+              </div>
+              <div class="col-md-2">
+                <p>
+                  <mat-form-field>
+                    <input matInput [matDatepicker]="dp4" placeholder="End Date" disabled>
+                    <mat-datepicker-toggle matSuffix [for]="dp4"></mat-datepicker-toggle>
+                    <mat-datepicker #dp4 disabled="false"></mat-datepicker>
+                  </mat-form-field>
+                </p>
+              </div>
+              <div class="col-md-1">
+                <div class="my-3">
+                  <button mat-raised-button color="accent">Search</button>
+                </div>
+              </div>
+            </div> 
+          </div>  
+        </div>
+      </div>
+    </div>
+  </section>
+   <!-- End upcoming evnt section -->
+  <!-- Start Tabs -->
+  <div class="tab-content" id="pills-tabContent">
+  <section  class="tab-pane fade show active mt-5" id="pills-upcoming-event" role="tabpanel" aria-labelledby="pills-upcoming-event-tab">
+    <div class="container">
+      <div class="row">
+        <div class="col-xs-12 ">
+          <nav>
+            <div class="nav nav-tabs nav-fill" id="nav-tab" role="tablist">
+              <a class="nav-item nav-link active" id="baseball-tab" data-toggle="tab" href="#baseball" role="tab" aria-controls="baseball" aria-selected="true"><span matBadge="13" matBadgeOverlap="false">Baseball</span></a>
+              <a class="nav-item nav-link" id="basketball-tab" data-toggle="tab" href="#basketball" role="tab" aria-controls="basketball" aria-selected="false"><span matBadge="5" matBadgeOverlap="false">BasketBall</span></a>
+              <a class="nav-item nav-link" id="nav-soccer-tab" data-toggle="tab" href="#nav-soccer" role="tab" aria-controls="nav-soccer" aria-selected="false"><span matBadge="8" matBadgeOverlap="false">Soccer</span></a>
+              <a class="nav-item nav-link" id="nav-softball-tab" data-toggle="tab" href="#nav-softball" role="tab" aria-controls="nav-softball" aria-selected="false"><span matBadge="12" matBadgeOverlap="false">Softball</span></a>
+            </div>
+          </nav>
+          <div class="tab-content px-3 px-sm-0" id="nav-tabContent">
+            <div class="tab-pane fade show active" id="baseball" role="tabpanel" aria-labelledby="baseball-tab">
+              <section class="upcoming-events">
+                <!-- Card -->
+                <section class="cards py-5">
+                  <div class="row">
+                    <div class="col-md-3" *ngFor="let baseball of baseballs">
+                      <div class="card">
+                        <figure class="card-img text-center py-4">
+                          <img src="assets/img/tournament.png" class="img-fluid" style="width: 200px;height:auto">  
+                        </figure>
+                        <div class="card-content px-2 pb-4">
+                          <h6><strong>{{baseball.heading}}</strong></h6>
+                          <p><i class="fa fa-sitemap" aria-hidden="true"></i>{{baseball.p1}}</p>
+                          <p><i class="fa fa-calendar" aria-hidden="true"></i>{{baseball.p2}}</p>
+                          <p><i class="fa fa-users" aria-hidden="true"></i><span class="text-danger">{{baseball.p3}}</span></p>
+                          <p><i class="fa fa-check-square-o" aria-hidden="true"></i><span class="text-danger">{{baseball.p4}}</span></p>
+                          <p><i class="fa fa-map-marker" aria-hidden="true"></i>{{baseball.p5}}</p>
+                          <div class="card-button px-1">
+                            <div class="example-button-row">
+                            <button mat-raised-button class="event-info">Event Info</button>
+                            <button mat-raised-button color="accent" class="view-schedule float-right">View Schedule</button>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </section>
+                <section class="pagination my-3">
+                  <div class="row">
+                    <div class="col-md-12">
+                        <ul class="pagination">
+                          <li class="page-item"><a class="page-link" >Previous</a></li>
+                          <li class="page-item active"><a class="page-link">1</a></li>
+                          <li class="page-item "><a class="page-link" >2</a></li>
+                          <li class="page-item"><a class="page-link" >3</a></li>
+                          <li class="page-item"><a class="page-link" >Next</a></li>
+                        </ul>
+                    </div>
+                  </div>
+                </section>
+              </section>
+            </div>
+            <div class="tab-pane fade" id="basketball" role="tabpanel" aria-labelledby="basketball-tab">
+              <section class="upcoming-events">
+                <!-- Card -->
+                <section class="cards py-5">
+                  <div class="row">
+                    <div class="col-md-3" *ngFor="let basketball of basketballs">
+                      <div class="card">
+                        <figure class="card-img text-center py-4">
+                          <img src="assets/img/basketball.png" class="img-fluid" style="width: 200px;height:auto">  
+                        </figure>
+                        <div class="card-content px-2 pb-4">
+                          <h6><strong>{{basketball.heading}}</strong></h6>
+                          <p><i class="fa fa-sitemap" aria-hidden="true"></i>{{basketball.p1}}</p>
+                          <p><i class="fa fa-calendar" aria-hidden="true"></i>{{basketball.p2}}</p>
+                          <p><i class="fa fa-users" aria-hidden="true"></i><span class="text-danger">{{basketball.p3}}</span></p>
+                          <p><i class="fa fa-check-square-o" aria-hidden="true"></i><span class="text-danger">{{basketball.p4}}</span></p>
+                          <p><i class="fa fa-map-marker" aria-hidden="true"></i>{{basketball.p5}}</p>
+                          <div class="card-button px-1">
+                            <div class="example-button-row">
+                            <button mat-raised-button class="event-info">Event Info</button>
+                            <button mat-raised-button color="accent" class="view-schedule float-right">View Schedule</button>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </section>
+                <section class="pagination my-3">
+                  <div class="row">
+                    <div class="col-md-12">
+                        <ul class="pagination">
+                          <li class="page-item"><a class="page-link" >Previous</a></li>
+                          <li class="page-item active"><a class="page-link">1</a></li>
+                          <li class="page-item "><a class="page-link" >2</a></li>
+                          <li class="page-item"><a class="page-link" >3</a></li>
+                          <li class="page-item"><a class="page-link" >Next</a></li>
+                        </ul>
+                    </div>
+                  </div>
+                </section>
+              </section>
+            </div>
+            <div class="tab-pane fade" id="nav-soccer" role="tabpanel" aria-labelledby="nav-soccer-tab">
+              <section class="upcoming-events">
+                <!-- Card -->
+                <section class="cards py-5">
+                  <div class="row">
+                    <div class="col-md-3" *ngFor="let soccer of soccers">
+                      <div class="card">
+                        <figure class="card-img text-center py-4">
+                          <img src="assets/img/soccer.jpg" class="img-fluid" style="width: 200px;height:auto">  
+                        </figure>
+                        <div class="card-content px-2 pb-4">
+                          <h6><strong>{{soccer.heading}}</strong></h6>
+                          <p><i class="fa fa-sitemap" aria-hidden="true"></i>{{soccer.p1}}</p>
+                          <p><i class="fa fa-calendar" aria-hidden="true"></i>{{soccer.p2}}</p>
+                          <p><i class="fa fa-users" aria-hidden="true"></i><span class="text-danger">{{soccer.p3}}</span></p>
+                         
+                          <div class="card-button px-1">
+                            <div class="example-button-row">
+                            <button mat-raised-button class="event-info">Event Info</button>
+                            <button mat-raised-button color="accent" class="view-schedule float-right">View Schedule</button>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </section>
+                <section class="pagination my-3">
+                  <div class="row">
+                    <div class="col-md-12">
+                        <ul class="pagination">
+                          <li class="page-item"><a class="page-link" >Previous</a></li>
+                          <li class="page-item active"><a class="page-link">1</a></li>
+                          <li class="page-item "><a class="page-link" >2</a></li>
+                          <li class="page-item"><a class="page-link" >3</a></li>
+                          <li class="page-item"><a class="page-link" >Next</a></li>
+                        </ul>
+                    </div>
+                  </div>
+                </section>
+              </section>            
+            </div>
+            <div class="tab-pane fade" id="nav-softball" role="tabpanel" aria-labelledby="nav-softball-tab">
+              <section class="upcoming-events">
+                  <!-- Card -->
+                  <section class="cards py-5">
+                    <div class="row">
+                      <div class="col-md-3" *ngFor="let softball of softballs">
+                        <div class="card">
+                          <figure class="card-img text-center py-4">
+                            <img src="assets/img/softball.png" class="img-fluid" style="width: 200px;height:auto">  
+                          </figure>
+                          <div class="card-content px-2 pb-4">
+                            <h6><strong>{{softball.heading}}</strong></h6>
+                            <p><i class="fa fa-sitemap" aria-hidden="true"></i>{{softball.p1}}</p>
+                            <p><i class="fa fa-calendar" aria-hidden="true"></i>{{softball.p2}}</p>
+                            <p><i class="fa fa-users" aria-hidden="true"></i><span class="text-danger">{{softball.p3}}</span></p>
+                            <p><i class="fa fa-check-square-o" aria-hidden="true"></i><span class="text-danger">{{softball.p4}}</span></p>
+                            <p><i class="fa fa-map-marker" aria-hidden="true"></i>{{softball.p5}}</p>
+                            <div class="card-button px-1">
+                              <div class="example-button-row">
+                              <button mat-raised-button class="event-info">Event Info</button>
+                              <button mat-raised-button color="accent" class="view-schedule float-right">View Schedule</button>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </section>
+
+               
+
+                  <section class="pagination my-3">
+                    <div class="row">
+                      <div class="col-md-12">
+                          <ul class="pagination">
+                            <li class="page-item"><a class="page-link" >Previous</a></li>
+                            <li class="page-item active"><a class="page-link">1</a></li>
+                            <li class="page-item "><a class="page-link" >2</a></li>
+                            <li class="page-item"><a class="page-link" >3</a></li>
+                            <li class="page-item"><a class="page-link" >Next</a></li>
+                          </ul>
+                      </div>
+                    </div>
+                  </section>
+                </section>              
+             </div>
+          </div>
+        
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Past event -->
+<section  class="tab-pane fade mt-5" id="pills-past-event" role="tabpanel" aria-labelledby="pills-past-event-tab">
+  
+  <div class="container">
+    <div class="row">
+      <div class="col-xs-12 ">
+        <nav>
+          <div class="nav nav-tabs nav-fill" id="nav-tab" role="tablist">
+            <a class="nav-item nav-link active" id="baseball-tab" data-toggle="tab" href="#baseball" role="tab" aria-controls="baseball" aria-selected="true"><span matBadge="13" matBadgeOverlap="false">Baseball</span></a>
+            <a class="nav-item nav-link" id="basketball-tab" data-toggle="tab" href="#basketball" role="tab" aria-controls="basketball" aria-selected="false"><span matBadge="5" matBadgeOverlap="false">BasketBall</span></a>
+            <a class="nav-item nav-link" id="nav-soccer-tab" data-toggle="tab" href="#nav-soccer" role="tab" aria-controls="nav-soccer" aria-selected="false"><span matBadge="8" matBadgeOverlap="false">Soccer</span></a>
+            <a class="nav-item nav-link" id="nav-softball-tab" data-toggle="tab" href="#nav-softball" role="tab" aria-controls="nav-softball" aria-selected="false"><span matBadge="12" matBadgeOverlap="false">Softball</span></a>
+          </div>
+        </nav>
+        <div class="tab-content px-3 px-sm-0" id="nav-tabContent">
+          <div class="tab-pane fade show active" id="baseball" role="tabpanel" aria-labelledby="baseball-tab">
+            <section class="upcoming-events">
+              <!-- Card -->
+              <section class="cards py-5">
+                <div class="row">
+                  <div class="col-md-3" *ngFor="let baseball of baseballs">
+                    <div class="card">
+                      <figure class="card-img text-center py-4">
+                        <img src="assets/img/tournament.png" class="img-fluid" style="width: 200px;height:auto">  
+                      </figure>
+                      <div class="card-content px-2 pb-4">
+                        <h6><strong>{{baseball.heading}}</strong></h6>
+                        <p><i class="fa fa-sitemap" aria-hidden="true"></i>{{baseball.p1}}</p>
+                        <p><i class="fa fa-calendar" aria-hidden="true"></i>{{baseball.p2}}</p>
+                        <p><i class="fa fa-users" aria-hidden="true"></i><span class="text-danger">{{baseball.p3}}</span></p>
+                        <p><i class="fa fa-check-square-o" aria-hidden="true"></i><span class="text-danger">{{baseball.p4}}</span></p>
+                        <p><i class="fa fa-map-marker" aria-hidden="true"></i>{{baseball.p5}}</p>
+                        <div class="card-button px-1">
+                          <div class="example-button-row">
+                          <button mat-raised-button class="event-info">Event Info</button>
+                          <button mat-raised-button color="accent" class="view-schedule float-right">View Schedule</button>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </section>
+              <section class="pagination my-3">
+                <div class="row">
+                  <div class="col-md-12">
+                      <ul class="pagination">
+                        <li class="page-item"><a class="page-link" >Previous</a></li>
+                        <li class="page-item active"><a class="page-link">1</a></li>
+                        <li class="page-item "><a class="page-link" >2</a></li>
+                        <li class="page-item"><a class="page-link" >3</a></li>
+                        <li class="page-item"><a class="page-link" >Next</a></li>
+                      </ul>
+                  </div>
+                </div>
+              </section>
+            </section>
+          </div>
+          <div class="tab-pane fade" id="basketball" role="tabpanel" aria-labelledby="basketball-tab">
+            <section class="upcoming-events">
+              <!-- Card -->
+              <section class="cards py-5">
+                <div class="row">
+                  <div class="col-md-3" *ngFor="let basketball of basketballs">
+                    <div class="card">
+                      <figure class="card-img text-center py-4">
+                        <img src="assets/img/basketball.png" class="img-fluid" style="width: 200px;height:auto">  
+                      </figure>
+                      <div class="card-content px-2 pb-4">
+                        <h6><strong>{{basketball.heading}}</strong></h6>
+                        <p><i class="fa fa-sitemap" aria-hidden="true"></i>{{basketball.p1}}</p>
+                        <p><i class="fa fa-calendar" aria-hidden="true"></i>{{basketball.p2}}</p>
+                        <p><i class="fa fa-users" aria-hidden="true"></i><span class="text-danger">{{basketball.p3}}</span></p>
+                        <p><i class="fa fa-check-square-o" aria-hidden="true"></i><span class="text-danger">{{basketball.p4}}</span></p>
+                        <p><i class="fa fa-map-marker" aria-hidden="true"></i>{{basketball.p5}}</p>
+                        <div class="card-button px-1">
+                          <div class="example-button-row">
+                          <button mat-raised-button class="event-info">Event Info</button>
+                          <button mat-raised-button color="accent" class="view-schedule float-right">View Schedule</button>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </section>
+              <section class="pagination my-3">
+                <div class="row">
+                  <div class="col-md-12">
+                      <ul class="pagination">
+                        <li class="page-item"><a class="page-link" >Previous</a></li>
+                        <li class="page-item active"><a class="page-link">1</a></li>
+                        <li class="page-item "><a class="page-link" >2</a></li>
+                        <li class="page-item"><a class="page-link" >3</a></li>
+                        <li class="page-item"><a class="page-link" >Next</a></li>
+                      </ul>
+                  </div>
+                </div>
+              </section>
+            </section>
+          </div>
+          <div class="tab-pane fade" id="nav-soccer" role="tabpanel" aria-labelledby="nav-soccer-tab">
+            <section class="upcoming-events">
+              <!-- Card -->
+              <section class="cards py-5">
+                <div class="row">
+                  <div class="col-md-3" *ngFor="let soccer of soccers">
+                    <div class="card">
+                      <figure class="card-img text-center py-4">
+                        <img src="assets/img/soccer.jpg" class="img-fluid" style="width: 200px;height:auto">  
+                      </figure>
+                      <div class="card-content px-2 pb-4">
+                        <h6><strong>{{soccer.heading}}</strong></h6>
+                        <p><i class="fa fa-sitemap" aria-hidden="true"></i>{{soccer.p1}}</p>
+                        <p><i class="fa fa-calendar" aria-hidden="true"></i>{{soccer.p2}}</p>
+                        <p><i class="fa fa-users" aria-hidden="true"></i><span class="text-danger">{{soccer.p3}}</span></p>
+                       
+                        <div class="card-button px-1">
+                          <div class="example-button-row">
+                          <button mat-raised-button class="event-info">Event Info</button>
+                          <button mat-raised-button color="accent" class="view-schedule float-right">View Schedule</button>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </section>
+              <section class="pagination my-3">
+                <div class="row">
+                  <div class="col-md-12">
+                      <ul class="pagination">
+                        <li class="page-item"><a class="page-link">Previous</a></li>
+                        <li class="page-item active"><a class="page-link">1</a></li>
+                        <li class="page-item "><a class="page-link" >2</a></li>
+                        <li class="page-item"><a class="page-link" >3</a></li>
+                        <li class="page-item"><a class="page-link" >Next</a></li>
+                      </ul>
+                  </div>
+                </div>
+              </section>
+            </section>            
+          </div>
+          <div class="tab-pane fade" id="nav-softball" role="tabpanel" aria-labelledby="nav-softball-tab">
+            <section class="upcoming-events">
+                <!-- Card -->
+                <section class="cards py-5">
+                  <div class="row">
+                    <div class="col-md-3" *ngFor="let softball of softballs">
+                      <div class="card">
+                        <figure class="card-img text-center py-4">
+                          <img src="assets/img/softball.png" class="img-fluid" style="width: 200px;height:auto">  
+                        </figure>
+                        <div class="card-content px-2 pb-4">
+                          <h6><strong>{{softball.heading}}</strong></h6>
+                          <p><i class="fa fa-sitemap" aria-hidden="true"></i>{{softball.p1}}</p>
+                          <p><i class="fa fa-calendar" aria-hidden="true"></i>{{softball.p2}}</p>
+                          <p><i class="fa fa-users" aria-hidden="true"></i><span class="text-danger">{{softball.p3}}</span></p>
+                          <p><i class="fa fa-check-square-o" aria-hidden="true"></i><span class="text-danger">{{softball.p4}}</span></p>
+                          <p><i class="fa fa-map-marker" aria-hidden="true"></i>{{softball.p5}}</p>
+                          <div class="card-button px-1">
+                            <div class="example-button-row">
+                            <button mat-raised-button class="event-info">Event Info</button>
+                            <button mat-raised-button color="accent" class="view-schedule float-right">View Schedule</button>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </section>
+
+ 
+                
+
+                <section class="pagination my-3">
+                  <div class="row">
+                    <div class="col-md-12">
+                        <ul class="pagination">
+                          <li class="page-item"><a class="page-link" >Previous</a></li>
+                          <li class="page-item active"><a class="page-link">1</a></li>
+                          <li class="page-item "><a class="page-link" >2</a></li>
+                          <li class="page-item"><a class="page-link" >3</a></li>
+                          <li class="page-item"><a class="page-link" >Next</a></li>
+                        </ul>
+                    </div>
+                  </div>
+                </section>
+
+
+              </section>              
+           </div>
+        </div>
+      
+      </div>
+    </div>
+  </div>
+</section>
+</div>
+<!-- End Tabs -->
+
+
+<app-footer></app-footer>
+

@@ -1,0 +1,59 @@
+
+<app-toolbarpage></app-toolbarpage>
+<section class="feature-page">
+  <section class="features-banner" id="features-banner">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12">
+          <div class="feature-banner-text pt-5">
+            <h1 class="display-4 text-center text-white">Features</h1>
+            <p class="text-center text-white pt-3">Lorem Ipsum is simply dummy text of the printing and typesetting industry. </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+<section class="feature-content">
+<div *ngFor="let tile of tiles;let i = index; let e=even; let o=odd;">
+  <div [ngClass]="{'container-even': i%2==0, 'container-odd':i%2==1}">
+    <div class="container" >
+      <div class="row" >
+          <div class="col-md-12">
+
+            <div class="feature-img-text py-custom">
+             <div class="">
+              <figure [ngClass]="{'shadow-box-even': i%2==0, 'shadow-box-odd':i%2==1}">   
+                <img [src]="ImageUrl+tile.image" class="img-fluid border-radius-5">
+              </figure>
+            </div>
+            <div class=""> 
+              <div class="feature-content-box ">
+                <div class="feature-icon text-color pb-2">
+                    <p>
+                      <!-- <i class="{{tile.icon}}" aria-hidden="true" style="color:#002065;font-size:28px"></i> -->
+                      <img [src]="ImageUrl+tile.logo" class="img-fluid border-radius-5">
+                    <span class="pl-2 text-color">{{tile.subtitle}}</span></p>
+                </div>
+                <div class="feature-text-heading">
+                  <article>
+                    <h2>{{tile.title}}</h2>
+                    <p>{{tile.content}}</p>   
+                  </article>
+                </div>
+              </div>
+            </div>
+          </div>
+          </div>
+        </div>
+      </div>
+    </div>
+</div>
+</section>
+<div class="example-button-row banner-button text-center py-md-5 pb-sm-3">
+  <button mat-raised-button color="accent" data-toggle="modal" data-target="#signup">
+    <span class="get-start">Get Started For Free<i class="fa fa-angle-double-right" aria-hidden="true"></i></span></button>
+</div>
+</section>
+<app-footer></app-footer>
+
+

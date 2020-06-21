@@ -1,0 +1,13 @@
+.example-icon {
+    padding: 0 14px;
+    }
+    
+    .example-spacer {
+    flex: 1 1 auto;
+    } 
+    
+      .mat-bottom-sheet-container-large {
+        min-width: 512px;
+        padding: 0px !important;
+        max-width: calc(100vw - 256px);
+    }

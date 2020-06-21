@@ -1,0 +1,64 @@
+<app-toolbarpage></app-toolbarpage>
+<section class="index-page">
+  <section class="banner mt-5" id="index-banner">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12">
+          <div class="banner-content">
+            <h1 class="text-center text-white font-style pt-3 font-5rem">Simple Tournament & League <br> Scheduling for All Sports</h1>
+            <div *ngIf="buttonstatus!=true" class="example-button-row  banner-button text-center mt-5 py-4">
+              <button class="create-tournament-button" mat-raised-button color="accent" data-toggle="modal" data-target="#signup" data-dismiss="modal">Create Tournament or League<img src="assets/img/plus-icon.png" class="img-fluid"></button>
+            </div>
+            <div *ngIf="buttonstatus==true" class="example-button-row  banner-button text-center mt-5 py-4">
+              <button class="create-tournament-button" mat-raised-button color="accent" routerLink="show-tournament">Create Tournament or League<img src="assets/img/plus-icon.png" class="img-fluid"></button>
+            </div>
+            <!-- <h3 class="text-center pt-2 text-white">Find Your Tournament or League</h3> -->
+            <!-- <div class="col-md-6 offset-md-3">
+              <div class="input-group banner-input py-3">
+                <input class="form-control py-2 border-right-0 border" type="search" value="" placeholder="Tournament Name, Sport, City, State etc." id="example-search-input">
+                  <span class="input-group-append">
+                      <div class="input-group-text bg-transparent custom-border border-left-0 pr-3"><img src="assets/img/search-icon.png" class="img-fluid custom-image-style"></div>
+                  </span>
+              </div>
+             </div> -->
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="card-icon my-62 mt-xs-3" id="index-card-icon">
+    <div class="container">
+      <div class="row">
+        <div class="col-6 col-sm-6 col-md-6">
+          <figure class="appstore-icon pr-md-4">
+            <img class="img-fluid" src="assets/img/appstore.png">
+          </figure>
+        </div>
+        <div class="col-6 col-sm-6 col-md-6">
+          <figure class="googlestore-icon pl-md-3">
+            <img class="img-fluid" src="assets/img/googlestore.png">
+          </figure>
+        </div>
+      </div>
+      <h2 class="text-center text-color py-3">Power All of Your events with Bracket Team</h2>
+    <div class="input-card py-3">
+      <div class="row">
+        <div class="col-md-4 mb-2" *ngFor="let tile of tiles">
+          <mat-card class="input-card-inner">
+            <div class="card-container text-center">
+              <figure class="card-icon">
+                <img mat-card-image [src]="tile.icon" alt="automated-scheduling" class="img-fluid" style="width:90px;height: auto;"/>
+              </figure>
+              <div class="card-name pt-2">
+                <p class="text-center">{{tile.text}}</p>
+              </div>
+            </div>
+          </mat-card>
+        </div>
+      </div>
+    </div>
+   </div>
+  </section>
+</section>  
+<app-footer></app-footer>
+

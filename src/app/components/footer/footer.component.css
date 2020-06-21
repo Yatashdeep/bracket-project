@@ -1,0 +1,32 @@
+footer{
+    background:url('src/assets/img/footer-img2.jpg');
+    background-position: center center;
+    background-size: cover;
+    background-position: relative;
+    letter-spacing: 1.2px;
+}
+.footer-logo{margin-left: -18px}
+.footer hr {
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    border: 0;
+    border-top: 1px solid rgba(255, 255, 255, 1);
+}
+footer a{
+    color: #fff;
+}
+
+.social-media-icons ul {
+    list-style: none;
+    padding: 0;
+    text-align: center;
+}
+
+.social-media-icons a {	
+	display: inline-block;
+	text-decoration: none;
+	padding: 14px;
+}
+ul.list-inline li a {
+    font-size: .875rem;
+}

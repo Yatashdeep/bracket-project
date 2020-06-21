@@ -1,0 +1,246 @@
+<app-toolbarpage></app-toolbarpage>
+<section class="create-tournament my-md-5" id="create-tournament">
+<div class="container">
+<div class="row">
+<div class="col-md-12"> 
+
+<agm-map [latitude]="latitude" [longitude]="longitude" [zoom]="zoom" style="display: none;"> 
+<agm-marker [latitude]="latitude" [longitude]="longitude" [markerDraggable]="true"
+(dragEnd)="markerDragEnd($event)"></agm-marker>
+</agm-map>
+  
+<button mat-raised-button (click)="DetailisEditable = !DetailisEditable" style="display: none;" >
+  {{DetailisEditable ? 'Enable edit mode' : 'Disable edit mode'}}
+</button> 
+
+
+<mat-horizontal-stepper linear #stepper>
+<mat-step [stepControl]="DetailFormGroup"  [editable]="DetailisEditable" [completed]="false">
+<form [formGroup]="DetailFormGroup" name="form" (ngSubmit)="f.form.valid && DetailonSubmit()" #f="ngForm" novalidate class="stepper" class="py-3">
+<div class="row">
+<ng-template matStepLabel>Details</ng-template>
+<div class="col-md-6">
+<div class="create-tournament-col1 example-container "> 
+<mat-form-field>
+<input matInput placeholder="Event Name" formControlName="EventNameCtrl" required>
+</mat-form-field>
+<mat-form-field>
+<!-- *ngFor="let tile of tiles;let i = index; let e=even; let o=odd;"> -->
+<mat-select placeholder="Select Your Sport" formControlName="SportCtrl" required>
+<mat-option *ngFor="let tile of tiles" [value]="tile.id">{{tile.name}}</mat-option> 
+</mat-select>
+</mat-form-field>
+<div>
+<div class="row">
+<div class="col-md-6">
+<mat-form-field>
+<input matInput [matDatepicker]="picker1" placeholder="Start Date" [formControl]="date" id="startDateDetail"  required>   
+<mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+<mat-datepicker #picker1></mat-datepicker>
+</mat-form-field>
+</div>
+<div class="col-md-6">
+<mat-form-field>
+<input matInput [matDatepicker]="picker2" placeholder="End Date" [formControl]="serializedDate" id="endDateDetail"  required>
+<mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+<mat-datepicker #picker2></mat-datepicker>
+</mat-form-field>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="col-md-6">  
+<div class="create-tournament-col2 mt-md-5">
+<mat-radio-group aria-label="Select an option" formControlName="OptionCtrl"  [(ngModel)]="DetailOptionGroup" required>
+<mat-radio-button value="1" >Tournament</mat-radio-button>
+<mat-radio-button value="2" class="ml-3">League</mat-radio-button>
+</mat-radio-group>
+<p class="mt-md-5 mt-sm-2">How long will most/all matchups of this event need the court for? (Hours:Minutes)</p>
+<p class="custom-font">This field is editable later in the setup process.</p>
+
+<div class="default-time-example mt-3" style="width: 150px;
+padding-top: 17px;">     
+<pre class="custom-date-fix py-1"> {{timeDetail.hour}}:{{timeDetail.minute}}</pre> 
+<button mat-icon-button matSuffix (click)="timerfunc()" class="button-custom">
+<mat-icon aria-hidden="false" aria-label="av_timer">av_timer</mat-icon>   
+</button>      
+<ngb-timepicker class="custom-timepicker"  [(ngModel)]="timeDetail" (ngModelChange)="onChange($event)" formControlName="timeDetail" *ngIf="timerDetail" [meridian]="meridianDetail"></ngb-timepicker>  
+</div>
+
+</div>
+</div>
+<!-- <div class="col-md-3"></div> -->
+<div class="stepper-button">
+<button mat-raised-button matStepperNext class="btn-color-green" [disabled]="f.form.invalid">Next</button>
+</div>
+</div>
+</form>
+</mat-step>
+<mat-step [stepControl]="AdministrativeFormGroup"  [editable]="DetailisEditable" [completed]="false">
+<form [formGroup]="AdministrativeFormGroup"  (ngSubmit)="AdminonSubmit()">
+<ng-template matStepLabel>Administrative Contact</ng-template>
+<diV class="container">
+   <div class="row">
+      <div class="col-md-9">
+         <mat-form-field>
+         <input matInput placeholder="Name" formControlName="adminNameCtrl">
+         </mat-form-field>
+         <mat-form-field>
+         <input matInput placeholder="Email" formControlName="adminEmailCtrl">
+         </mat-form-field>
+         <mat-form-field class="example-full-width">
+         <span matPrefix>+1 &nbsp;</span>
+         <input type="number" matInput placeholder="Phone" formControlName="adminPhoneCtrl">
+         </mat-form-field>
+         <mat-form-field>
+         <input matInput placeholder="Organization Name" formControlName="adminOrgCtrl">
+         </mat-form-field>
+      </div>
+      <div class="col-md-3">
+            <h4 class="mt-5">Tournament Logo</h4>
+         <div class="tournament-icon pt-5">
+            
+            <figure>
+               <img [src]="logo" style="width:215px;height:auto" class="img-fluid">
+            </figure>
+            <!-- <mat-form-field> -->
+               <!-- <img style="width:33px" src="../../assets/user.png"> -->
+               <!-- <img  [src]="logo" class="logo-upload" alt="logo-upload"> --> 
+               <input type="file"  (change)="handleFileInput($event.target.files)" #Image accept='image/*' >
+                <!-- <input type="file"  (change)="onFileChanged($event)" #file accept='image/*' >    -->
+               <!-- </mat-form-field> -->
+            <!-- <label class="image-upload-container btn btn-bwm">
+               <span>Select Image</span>
+               <input #imageInput
+                      type="file"
+                      accept="image/*"
+                      (change)="processFile(imageInput)">
+             </label> -->
+           <!--  <input type="file" class="custom-tournament-icon"> -->
+            <!-- <button type="button" class="btn-custom-color" mat-raised-button (click)="fileInput.click()">Choose File</button>
+            <input hidden (change)="onFileSelected()"  #fileInput type="file" id="file" > -->
+         </div>
+      </div>
+   </div>
+</diV>
+
+<div class="stepper-button">
+<button mat-raised-button matStepperPrevious class="btn-custom-color">Back</button>
+<button mat-raised-button matStepperNext class="btn-color-green ml-3" (click)="AdminonSubmit">Next</button>
+</div>
+</form>
+</mat-step>
+<mat-step [stepControl]="VenuesFormGroup" [completed]="false"> 
+  
+<ng-template matStepLabel>Venues</ng-template>
+<div class="pt-4">    
+<h4>Venue   <button mat-raised-button color="accent" class="float-right" (click)="openDialog()" >Add New Venue</button>   
+    <!-- data-toggle="modal" data-target="#myModal" -->
+</h4> 
+</div>
+<form [formGroup]="VenuesFormGroup" (ngSubmit)="fvenue.form.valid && VenueonSubmit()" class="py-3" #fvenue="ngForm" novalidate>
+<div class="stepper-3"> 
+   <section class="card">
+      <div class="container">
+         <div class="row">
+            <div class="col-md-12 col-sm-12 col-xs-12" *ngIf="FinalArrayVenues == 0"> 
+                  <div class="card-1">
+                  <div class="card-inner p-3">
+                     <div class="row"> 
+                        <div class="col-md-12" style="text-align: center;">
+                           <h5>No Data Found</h5>
+                           <p>Click the Add New button above to get started</p> 
+                        </div>
+                     </div>
+                  </div>
+                  </div>
+               </div>
+               <div class="col-md-6 col-sm-12 col-xs-12" *ngFor="let VenueItem of FinalArrayVenues"> 
+               <div class="card-1">
+                  <div class="card-header bg-light pt-3">
+                     <div class="row">
+                        <div class="col-4">
+                           <p class="card-p"> <span class=""><i class="fa fa-location-arrow" style="font-size: 18px;" aria-hidden="true"></i></span>{{ VenueItem.VenueAbbr }}</p>
+                        </div>
+                        <div class="col-8">
+                           <div class="float-right">
+                              Primary
+                              <span class="ml-1">
+                                 <mat-slide-toggle></mat-slide-toggle>
+                              </span>
+                              <span class="card-header-icon">
+                              <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+                              </span>
+                              <span class="card-header-icon">
+                              <i class="fa fa-trash" aria-hidden="true"></i>
+                              </span>
+                           </div>
+                        </div>
+                     </div>
+                     </div>
+                  <div class="card-inner p-3">
+                     <div class="row">
+                        <div class="col-md-6">
+                           <h5>{{ VenueItem.VenueName }}</h5>
+                           <p>{{ VenueItem.VenueAddress+", "+VenueItem.VenueCity+", "+VenueItem.VenueState+", "+ VenueItem.VenueCountry+", "+VenueItem.VenuePostal }}</p>  
+                           <p><span *ngFor="let item1 of VenueItem.VenueCourtArray" style="margin-right:10px;">{{ item1.CourtName }}</span></p>        
+                        </div>
+                        <div class="col-md-6">
+                           <ul>
+                              <li>Has Concessions: <span *ngIf="VenueItem.HasConcessions !=1">{{ VenueItem.HasConcessions }}</span><span *ngIf="VenueItem.HasConcessions ==1">N/A</span></li>
+                              <li>Venue Type: <span>{{ VenueItem.VenueType }}</span></li>      
+                           </ul>
+                        </div>
+                     </div>
+                  </div>
+                  </div>
+               <div class="col-md-6"></div>
+            </div>
+            </div>
+      </div>
+   </section>
+
+
+<mat-form-field class="example-full-width" style="display:none;"> 
+    <input matInput placeholder="Name" formControlName="VenueCtrl" [(ngModel)]="VenuesFirstCtrl">
+    <mat-hint align="start"><strong>Example: 8th Grade Boys or Blue Division</strong> </mat-hint>
+    </mat-form-field> 
+</div> 
+
+<div class="mt-2"> 
+<button mat-raised-button matStepperPrevious class="btn-custom-color" (click)="goBack(stepper)" type="button">Back</button>
+<button mat-raised-button matStepperNext class="btn-color-green ml-3" (click)="goForward(stepper)" type="button">Next</button>
+</div>
+</form>
+</mat-step>
+<mat-step [stepControl]="DivisionFormGroup"  [editable]="DetailisEditable" [completed]="false">
+    <form [formGroup]="DivisionFormGroup" (ngSubmit)="fDiv.form.valid && DivisiononSubmit()" class="py-3" #fDiv="ngForm" novalidate>
+<ng-template matStepLabel>Final</ng-template>
+<div class="stepper-group pt-5">
+<!-- <p><a routerLink="/">Manually Division </a></p> -->
+<p><a routerLink="/">Tournament Created Successfully </a></p>
+<hr>
+<article>
+<!-- <h4>Initial Division Name</h4> -->
+<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,</p>
+</article>
+<!-- <mat-form-field class="example-full-width">
+<input matInput placeholder="Division Name" formControlName="DivisionCtrl">
+<mat-hint align="start"><strong>Example: 8th Grade Boys or Blue Division</strong> </mat-hint>
+</mat-form-field> -->
+</div>
+<div class="">
+<!-- <button mat-raised-button matStepperPrevious>Back</button> -->
+<!-- <button mat-raised-button matStepperNext  (click)="stepper.reset()" routerLink="/event-name"   class="btn-color-green mt-5" [disabled]="fDiv.form.invalid">Finish</button>   -->
+<button mat-raised-button class="btn-color-green mt-5" >Finish</button>  
+</div>
+</form>
+</mat-step>
+</mat-horizontal-stepper>
+
+</div>
+</div>
+</div>
+</section>
+<app-footer></app-footer>

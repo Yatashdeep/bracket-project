@@ -1,0 +1,285 @@
+<nav class="navbar navbar-expand-lg navbar-light background-color fixed-top scrolling-navbar">
+  <div class="container">
+      <a class="navbar-brand" routerLink="/Home"><img src="assets/img/logo-white.png" class="img-fuild" style="width: 110px;height: auto;"></a>
+      <button class="navbar-toggler ml-auto" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo01" aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"><i class="fa fa-navicon" style="color:#fff; font-size:28px;"></i></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
+        <ul class="navbar-nav ml-auto mt-2  mt-lg-0 text-white ">
+          <li class="nav-item active">
+            <a class="nav-link" routerLink="/features">Features <span class="sr-only">(current)</span></a>
+          </li>
+          <li class="nav-item  active">
+            <a class="nav-link cursor-pointer"  routerLink="/pricing" >Pricing</a>
+          </li>
+          <li class="nav-item active">
+            <a class="nav-link cursor-pointer" routerLink="/upcoming-events">Find Events</a>
+          </li>
+          <li *ngIf="tokenstatus==true" class="nav-item active" (click)="Logout()" >
+            <a class="nav-link cursor-pointer" data-toggle="modal" >LogOut</a>
+          </li>
+          <li  class="nav-item active">
+            <a class="nav-link cursor-pointer" data-toggle="modal" data-target="#demo">Demo</a>
+          </li>
+          <li *ngIf="tokenstatus!=true" class="nav-item active">
+            <a class="nav-link cursor-pointer" data-toggle="modal" data-target="#login">Login</a>
+            <!-- <a class="nav-link cursor-pointer" (click)="openlogin()">Login</a> -->
+          </li>
+        
+        </ul>
+        <div *ngIf="tokenstatus!=true"  class="example-button-row my-2 my-lg-0 ml-2">
+           <button mat-raised-button color="accent" data-toggle="modal" data-target="#signup">Get Started</button>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+
+  <!-- Login popup -->
+  <div class="container">
+    <!-- The Modal -->
+      <div class="modal fade" id="login" #myModel >
+        <div class="modal-dialog modal-md">
+          <div class="modal-content">
+            <!-- Modal Header -->
+            <div class="modal-header ">
+              <h4 class="modal-title text-center upper-case">Login to your account</h4>
+              <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+            <!-- Modal body -->
+            <form [formGroup]="firstFormGroup" >
+                <div class="container">
+                  <div class="row">
+                    <div class="col-md-12"> 
+                        <div class="example-container pt-4 pb-2">
+                           <mat-form-field>
+                              <!-- <p style="color:red;" *ngIf="!firstFormGroup.controls.Username.valid  && (firstFormGroup.controls.Username.dirty || submitAttempt)">*User Name can not be empty</p> -->
+                              <input [(ngModel)]="Username" id="loginusrname" value="" formControlName="Username" type="text" matInput placeholder="Enter User Name">
+                            
+                            </mat-form-field>
+                            <p style="color:red;" *ngIf="!firstFormGroup.controls.Username.valid  && (firstFormGroup.controls.Username.dirty || submitAttempt)">*User Name can not be empty</p>
+                         
+                            <mat-form-field> 
+                               
+                             <input [(ngModel)]="Password" id="loginpassword" formControlName="Password" matInput placeholder="Enter your password" [type]="hide ? 'text' : 'password'" value="">
+                              <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+                              <mat-icon><img src="assets/img/visibility_off_black.png" *ngIf="hide" />  <img src="assets/img/visibility_black.png"  *ngIf="!hide" /> </mat-icon>
+                             </button>
+                           
+                            </mat-form-field>
+                            <p  style="color: red;" *ngIf="!firstFormGroup.controls.Password.valid  && (firstFormGroup.controls.Password.dirty || submitAttempt)">*Password can not be empty</p>  
+                        </div>
+                        <div class="example-button-row">
+                          <p>
+                            <!-- <mat-card-content>
+                              <section class="example-section"> -->
+                                <mat-checkbox  (change)="onstaysign($event)" class="example-margin">Stay signed in</mat-checkbox>
+                              <!-- </section>
+                            </mat-card-content> -->
+                          <span  class="forget-password float-right font-size-14"><a class="a-link" data-toggle="modal" data-target="#forgetpassword" data-dismiss="modal">Forgot password?</a></span>
+                          </p>
+                          <button *ngIf="loader==true" mat-raised-button [disabled]="!firstFormGroup.valid" class="custom-login-button" color="accent" data-toggle="modal" data-target="#login" (click)="login()" data-dismiss="modal" >Log in</button>
+                          <div *ngIf="loader==false" class="loader-center">
+                          <mat-spinner  strokeWidth="3" [diameter]="50" ></mat-spinner>
+                          </div>
+                          <!-- <button mat-raised-button class="custom-login-button" color="accent" routerLink="/create-tournament" data-dismiss="modal">Log in</button> -->
+                        </div>
+                    </div>
+                  </div>
+                </div>
+              </form>
+              <hr>
+              <!-- Modal footer -->
+              <div class="modal-footer">
+                <div class="Sign-up py-2">
+                    <p class="font-size-14 text-center">Not a member? <a class="a-link" data-toggle="modal" data-target="#signup" data-dismiss="modal">Sign up now</a></p>
+                </div>
+              </div>
+            </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Get started -->
+
+   <div class="container">
+      <!-- The Modal -->
+        <div class="modal fade" id="signup">
+          <div class="modal-dialog modal-md">
+            <div class="modal-content">
+              <!-- Modal Header -->
+              <div class="modal-header ">
+                <h4 class="modal-title text-center upper-case">Register account</h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+              </div>
+              <!-- Modal body -->
+              <form [formGroup]="secondFormGroup" >
+                  <div class="container">
+                    <div class="row">
+                      <div class="col-md-12"> 
+                          <div class="example-container pt-4 mb-2">
+                              <mat-form-field>
+                                  <input formControlName="Firstname" id="Firstname" value="" type="text" matInput placeholder="First name">
+                                </mat-form-field>
+                                <p style="color:red;" *ngIf="!secondFormGroup.controls.Firstname.valid  && (secondFormGroup.controls.Firstname.dirty || submitAttempt)">*Firstname can not be empty</p>
+                                <mat-form-field>
+                                  <input formControlName="Lastname" id="Lastname" value="" type="text" matInput placeholder="Last name">
+                                </mat-form-field>
+                                <p style="color:red;" *ngIf="!secondFormGroup.controls.Lastname.valid  && (secondFormGroup.controls.Lastname.dirty || submitAttempt)">*Lastname can not be empty</p>
+                                <mat-form-field>
+                                  <input formControlName="Email" id="Email" value="" type="email" matInput placeholder="Enter your email">
+                                </mat-form-field>
+                                <p style="color:red;" *ngIf="!secondFormGroup.controls.Email.valid  && (secondFormGroup.controls.Email.dirty || submitAttempt)">*Please Enter valid email</p>
+                                <mat-form-field>
+                                  <input formControlName="Password" id="Password" value="" matInput placeholder="Enter your password" [type]="hide ? 'text' : 'password'">
+                                    <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+                                    <mat-icon><img src="assets/img/visibility_off_black.png" *ngIf="hide" />  <img src="assets/img/visibility_black.png"  *ngIf="!hide" /> </mat-icon>
+                                  </button>
+                                </mat-form-field>
+                                <p style="color:red;" *ngIf="!secondFormGroup.controls.Password.valid  && (secondFormGroup.controls.Password.dirty || submitAttempt)">*Password Should be Six characters including one uppercase letter, one special character and alphanumeric characters .</p>
+                                <mat-form-field>
+                                  <input formControlName="organizationName" id="organizationName" value="" matInput placeholder="Enter organization name" type="text">
+                                </mat-form-field>
+                                <p style="color:red;" *ngIf="!secondFormGroup.controls.organizationName.valid  && (secondFormGroup.controls.organizationName.dirty || submitAttempt)">*OrganizationName can not be empty</p> 
+                              </div>
+                            <div class="example-button-row">
+                            <p>
+                              <!-- <mat-card-content> -->  
+                                <!-- <section class="example-section"> -->
+                                  <mat-checkbox required formControlName="check" id="Signcheck" (change)="onChkChange($event)" class="example-margin">I agree to the terms & conditions</mat-checkbox>
+                                <!-- </section> -->
+                              <!-- </mat-card-content> -->
+                            </p>
+                            <!-- <button id="btnTest" mat-raised-button [disabled]="!secondFormGroup.valid" (click)="signup()" class="custom-login-button" color="accent" data-toggle="modal" data-target="#login" data-dismiss="modal">Signup</button> -->
+                            <!-- <button mat-raised-button (click)="signup()" class="custom-login-button" color="accent" data-toggle="modal" data-target="#login" data-dismiss="modal">Signup</button> -->
+                            <button data-dismiss="modal" id="btnTest" mat-raised-button [disabled]="!secondFormGroup.valid" (click)="signup()" class="custom-login-button" color="accent"  >Signup</button>
+                          </div> 
+                      </div>
+                    </div>
+                  </div>
+                </form> 
+                <hr>
+                <!-- Modal footer -->
+                <div class="modal-footer">
+                  <div class="custom-login py-2">
+                      <p class="font-size-14 text-center">Are you an existing customer?<a class="a-link ml-2" data-toggle="modal" data-target="#login" data-dismiss="modal">Login Now!</a></p>
+                  </div>
+                </div>
+              </div>
+          </div>
+        </div>
+      </div>
+
+<!-- Forgetpassword popup -->
+<div class="container">
+  <!-- The Modal -->
+    <div class="modal fade" id="forgetpassword">
+      <div class="modal-dialog modal-md">
+        <div class="modal-content">
+          <!-- Modal Header -->
+          <div class="modal-header ">
+            <h4 class="modal-title text-center upper-case">Forget password?</h4>
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+          </div>
+          <div class="modal-title-p text-center pt-4 px-5">
+            <p>Enter the email you registered with and we 
+                will send you a link to reset your password.</p>
+          </div>
+          <!-- Modal body -->
+          <form [formGroup]="thirdFormGroup">
+              <div class="container">
+                <div class="row">
+                  <div class="col-md-12"> 
+                      <div class="example-container">
+                         <mat-form-field>
+                            <input formControlName="Email" type="text" matInput placeholder="Email">
+                          </mat-form-field> 
+                          <p style="color:red;" *ngIf="!thirdFormGroup.controls.Email.valid  && (thirdFormGroup.controls.Email.dirty || submitAttempt)">*Please Enter Valid Email</p>
+                        </div>
+                      <div class="example-button-row">
+                        <button [disabled]="!thirdFormGroup.valid" (click)="forgetpassword()" mat-raised-button class="custom-login-button" color="accent">Submit</button>
+                      </div>
+                     
+                  </div>
+                </div>
+              </div>
+            </form>
+            <hr>
+            <!-- Modal footer -->
+            <div class="modal-footer">
+              <div class="Sign-up py-2">
+                  <p class="font-size-14 text-center">
+                    <a class="a-link" data-toggle="modal" data-target="#login" data-dismiss="modal">I already have a account</a>
+                  </p>
+              </div>
+            </div>
+          </div>
+      </div>
+    </div>
+  </div>
+
+
+      <!-- Demo -->
+
+      <div class="container">
+          <!-- The Modal -->
+            <div class="modal fade" id="demo">
+              <div class="modal-dialog modal-md">
+                <div class="modal-content">
+                  <!-- Modal Header -->
+                  <div class="modal-header ">
+                    <h4 class="modal-title text-center upper-case">Sign up for a demo</h4>
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                  </div>
+                  <div class="modal-title-p text-center pt-4">
+                    <p>We will tailor the demo to your needs</p>
+                  </div>
+                   <!-- Modal body -->
+                    <form [formGroup]="demoFormControl">
+                      <div class="container">
+                        <div class="row">
+                          <div class="col-md-12">
+                            <div class="example-container"></div>
+                            <mat-form-field>   
+                              <input matInput formControlName="Firstname" placeholder="First name" id="Firstname">
+                            </mat-form-field>
+                            <p style="color:red;" *ngIf="!demoFormControl.controls.Firstname.valid  && (demoFormControl.controls.Firstname.dirty || submitAttempt)">*Please Enter First Name</p>
+                            <mat-form-field>
+                              <input matInput formControlName="Lastname" placeholder="Last name" id="Lastname">
+                            </mat-form-field>
+                            <p style="color:red;" *ngIf="!demoFormControl.controls.Lastname.valid  && (demoFormControl.controls.Lastname.dirty || submitAttempt)">*Please Enter Last Name</p>
+                            <mat-form-field>
+                              <input matInput formControlName="Email" placeholder="Email" id="Email">
+                            </mat-form-field>
+                            <p style="color:red;" *ngIf="!demoFormControl.controls.Email.valid  && (demoFormControl.controls.Email.dirty || submitAttempt)">*Please Enter Valid Email</p>
+                            <mat-form-field>
+                              <textarea matInput formControlName="OrganizationName" placeholder="Comments" id="OrganizationName"></textarea>
+                            </mat-form-field>
+                            <p style="color:red;" *ngIf="!demoFormControl.controls.OrganizationName.valid  && (demoFormControl.controls.OrganizationName.dirty || submitAttempt)">*Please Enter Valid OrganizationName</p>
+                            <mat-form-field class="example-full-width">
+                              <!-- <span matPrefix>+1 &nbsp;</span> -->
+                              <input type="number" formControlName="phonenumber"  matInput placeholder="Phone Number" id="phonenumber">
+                            </mat-form-field>
+                            <p style="color:red;" *ngIf="!demoFormControl.controls.phonenumber.valid  && (demoFormControl.controls.phonenumber.dirty || submitAttempt)">*Please Enter Phone Number</p>
+                            <div class="custom-button-width pb-4">
+                              <button [disabled]="!demoFormControl.valid" (click)="demosubmit()" mat-raised-button class="custom-login-button" color="accent" data-dismiss="modal">Submit</button>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </form>
+                    <!-- Modal footer -->
+                    <div class="modal-footer">
+                      <div class="custom-login py-2">
+                          <p class="font-size-14 text-center">Are you an existing customer?<a class="a-link ml-2" data-toggle="modal" data-target="#login" data-dismiss="modal">Login Now!</a></p>
+                      </div>
+                    </div>
+                    <!-- Forgot password -->
+                  </div>
+              </div>
+            </div>
+          </div>
+  
+
+
+    

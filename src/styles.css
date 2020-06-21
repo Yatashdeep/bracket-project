@@ -1,0 +1,58 @@
+/* You can add global styles to this file, and also import other style files */
+/* @import "~@angular/material/prebuilt-themes/deeppurple-amber.css"; */
+@import "../node_modules/bootstrap/dist/css/bootstrap.css";
+/* @import url('https://fonts.googleapis.com/css?family=Roboto&display=swap'); */
+/* @import url('https://fonts.googleapis.com/css?family=Montserrat&display=swap'); */
+/* body{font-family:'Roboto', sans-serif;} */
+@import '~@fullcalendar/core/main.css';
+@import '~@fullcalendar/daygrid/main.css';
+
+body{
+  font-family: sans-serif!important;
+}
+h1, h2, h3, h4, h5{font-family: 'Noto Sans SC', sans-serif;}
+button.btn-custom-color{background: #2196f3;color:#fff}
+button.btn-color-green {background: #5cb85c;color: #fff;}
+
+.primary-back{
+  background-color:#002065;
+} 
+.secondry-back{
+  background-color:#2196F3;
+}
+.primary-text{
+  color:#002065;
+}
+.orange-color{
+  color:#f09d06;
+}
+.font-small{font-size: 13px}
+span.border-left-custom {
+  border-left: 4px solid #002065;
+  margin-right: 5px;
+}
+
+/* width */
+::-webkit-scrollbar {
+    width: 8px;
+  }
+  
+  /* Track */
+  ::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 5px grey; 
+    border-radius: 10px;
+  }
+   
+  /* Handle */
+  ::-webkit-scrollbar-thumb {
+    background: #a9a9aa; 
+    border-radius: 10px;
+  }
+  
+  /* Handle on hover */
+  ::-webkit-scrollbar-thumb:hover {
+    background: #b6b5b7; 
+  }
+  .modal-backdrop.fade.show {
+    z-index: 10;
+}

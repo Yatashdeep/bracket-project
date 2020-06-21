@@ -1,0 +1,9 @@
+.custom-width{
+    width: 100%;;
+    }
+    mat-dialog-content {
+        height: 210px!important;
+    }
+    .dialogpopup {
+        padding: 50px 14px;
+    }

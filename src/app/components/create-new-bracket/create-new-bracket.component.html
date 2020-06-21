@@ -1,0 +1,533 @@
+<app-toolbarpage></app-toolbarpage>
+<section class="create-new-bracket mt-100">
+<div class="container">
+  <div class="row">
+    <div class="col-md-12">
+        <!-- <button mat-raised-button (click)="addItem()">
+            add item
+          </button> -->
+          <!-- <button mat-raised-button (click)="isEditable = !isEditable">
+            {{!isEditable ? 'Enable edit mode' : 'Disable edit mode'}}
+          </button>           -->
+           <form [formGroup]="formGroup" >
+            <mat-horizontal-stepper  formArrayName="form" [linear]="isLinear" #stepper>
+              <mat-step  [formGroupName]="i" *ngFor="let customerGroup of formGroup.controls.form.controls; let i = index">
+                <!-- <ng-template matStepLabel>Step {{i + 1}}</ng-template>
+                <mat-form-field>
+                  <input matInput placeholder="Address" formControlName="cont" required>
+                </mat-form-field>
+              <div>
+                <button mat-button matStepperPrevious>Back</button>
+                <button mat-button matStepperNext>Next</button>
+              </div> -->
+              <form [formGroup]="firstFormGroup">
+                  <ng-template matStepLabel>Detail</ng-template>
+                   <div class="container">
+                     <!-- <div class="row"> -->
+                      <div class="row"   *ngIf="detail==false">
+                   
+                       <div class="col-md-4">
+                          <mat-form-field>
+                            <input matInput placeholder="Bracket Name"  (keypress)="onChangeName($event)" (ionInput)="onKeypress($event)" >
+                          </mat-form-field>
+                      
+                          <div class="py-3">
+                            <mat-form-field>
+                              <mat-label>Auto scheduler should use:</mat-label>
+                              <mat-select [(value)]="venues">
+                                <mat-option value="allvenues">All Venues </mat-option>
+                              </mat-select>
+                            </mat-form-field>
+                          </div>
+                          
+                           <h6 class="py-3">Auto scheduler should look at days:</h6>
+                          
+      
+                           <mat-checkbox formControlName="hideRequired" style="margin-right: 10px;" *ngFor="let value of VenueDateArr">  {{ServerTimestamp(value.dateval)}} </mat-checkbox> 
+      
+                           <h6 class="pt-3">How long will these matchups need the court for?</h6>
+                           <p>(Hours:Minutes)</p>
+      
+                           <div class="default-time-example example-full-width mt-3"> 
+      
+                              <pre class="custom-date-fix py-1"> {{timeDetail.hour}}:{{timeDetail.minute}}</pre> 
+                              <button mat-icon-button matSuffix (click)="timerfunc()" class="button-custom" >  
+                              <mat-icon aria-hidden="false" aria-label="av_timer">av_timer</mat-icon>   
+                              </button>      
+                              <ngb-timepicker class="custom-timepicker"  [(ngModel)]="timeDetail" (ngModelChange)="onChange($event)" formControlName="timeDetail" *ngIf="timerDetail"></ngb-timepicker>   
+                              
+                             
+                          </div>
+                          <div class="py-4">
+                          <mat-form-field>
+                            <mat-label>Bracket Type</mat-label>
+                            <mat-select [(value)]="selected"  (selectionChange)="someMethod($event.value)">
+                              <mat-option value="option1">Single Elimination </mat-option>
+                              <mat-option value="option2">Double Elimination </mat-option>
+                              <mat-option value="option3">3 Game Guarantee</mat-option>
+                              <mat-option value="option4">4 Game Guarantee</mat-option>
+                              <mat-option value="option5">Consolation</mat-option>
+                            </mat-select>
+                          </mat-form-field>
+                         </div>
+                         <div>
+                            <mat-form-field>
+                                <mat-label>Number of Teams</mat-label>
+                                <mat-select [(value)]="teams" (selectionChange)="changeteam($event.value)">
+                                    <mat-option  *ngFor="let value of teamsoption" value="{{value}}">{{value}}</mat-option>
+                                </mat-select>
+                              </mat-form-field>
+                              <h4 >Bracket Options</h4>
+                              <p class="py-4">{{teams}} Team Three Game Guarantee</p>
+                         </div>
+      
+      
+                       </div>
+                       <div class="col-md-8">
+                          
+      
+      
+      
+                          <app-bracketsample [parentValue]="teams" [bracketType]="selected" ></app-bracketsample>
+                          
+                        
+                       </div>
+
+                     
+
+
+                     </div>
+                     <!-- <div> -->
+                     <div *ngIf="detail==true">
+                    
+                        <!-- <div>
+                          
+                              <mat-form-field>
+                                  <mat-label>Top Team</mat-label>
+                                  <mat-select [(value)]="selectedtop"  (selectionChange)="someMethod($event.value)">
+                                    <mat-option *ngFor="let value of bracket" value="value.val">{{value.val}} </mat-option>
+                                 
+                                  </mat-select>
+                                </mat-form-field>
+                                <mat-form-field>
+                                    <mat-label>Bottom Team</mat-label>
+                                    <mat-select [(value)]="selectedbottom"  (selectionChange)="someMethod($event.value)">
+                                        <mat-option *ngFor="let value of bracket" value="value.val">{{value.val}} </mat-option>
+                                    
+                                    </mat-select>
+                                  </mat-form-field>
+                              <h4 >Bracket Options</h4>
+                              <p class="py-4">{{teams}} Team Three Game Guarantee</p>
+                         </div>
+      
+                         <div class="col-md-8">
+           <app-bracketsample [parentValue]="teams" [bracketType]="selected"  [matchup]="matchupid" 
+           
+           
+            
+           
+           ></app-bracketsample>
+                         </div> -->
+                       
+                         <ng-template matStepLabel>Matchup 1</ng-template>
+                         <div class="matchup1 bg-light py-3 my-4">
+                           <div class="container">
+                             <div class="row">
+                               <div class="col-md-5">
+                                 <div class="m1-teams">
+                                   <div class="top-team bg-white p-3">
+                                     <div class="top-team-header">
+                                     <p><i class="fa fa-users pr-1" aria-hidden="true"></i> Top Team</p>
+                                     </div><hr>
+                                     <div class="top-team-body">
+                                     <div class="row">
+                                       <div class="col-md-6">
+                                         <label id="example-radio-group-label">Select Team From:</label>
+                                          <mat-radio-group (change)="onChanges($event)" aria-labelledby="example-radio-group-label" class="example-radio-group" [(ngModel)]="bracketteams"  >
+                                             <!-- <mat-radio-button class="example-radio-button custom-radio-team" *ngFor="let season of seasons" [value]="season">  
+                                               {{season}}
+                                             </mat-radio-button> -->
+                                             <mat-radio-button  class="example-radio-button custom-radio-team"  [value]="1" checked>  
+                                              Teams List
+                                            </mat-radio-button>
+                                            <!-- <mat-radio-button class="example-radio-button custom-radio-team"  [value]="2">  
+                                              
+                                             Bracket-Losing Team
+                                            </mat-radio-button>
+                                            <mat-radio-button class="example-radio-button custom-radio-team"  [value]="3">  
+                                              Bracket-Winning Team
+                                            </mat-radio-button> -->
+                                            <mat-radio-button   class="example-radio-button custom-radio-team"  [value]="2" disabled>  
+                                              Pool & Bracket-Combined
+                                            </mat-radio-button>
+                                            <mat-radio-button class="example-radio-button custom-radio-team"  [value]="3">  
+                                              No Team (Bye)
+                                            </mat-radio-button>
+                                           </mat-radio-group>                                      
+                                       </div>
+                                       <div class="col-md-6">
+                                         <mat-form-field *ngIf="formfeild==true">
+                                             <!-- <mat-label>Select</mat-label> -->
+                                             <mat-select [(value)]="topbracketteams" #fontSize value="16px" (selectionChange)="triggerResize1()">
+                                              <mat-option *ngFor="let value of bracket" value="{{value.val}}" >{{value.val}}</mat-option>
+                                             
+                                             </mat-select>
+                                           </mat-form-field>
+                                       </div>
+                                     </div>
+                                     </div>
+                                   </div>
+             
+                                   <div *ngIf="message!='active'" class="bottom-team bg-white p-3">
+                                       <div class="bottom-team-header">
+                                       <p><i class="fa fa-users pr-1" aria-hidden="true"></i> Bottom Team</p>
+                                       </div><hr>
+                                       <div class="bottom-team-body">
+                                       <div class="row">
+                                         <div class="col-md-6">
+                                           <label id="example-radio-group-label">Select Team From:</label>
+                                            <mat-radio-group  (change)="onChanges2($event)" aria-labelledby="example-radio-group-label" class="example-radio-group" [(ngModel)]="favoriteSeason"  >
+                                               <!-- <mat-radio-button class="example-radio-button custom-radio-team" *ngFor="let season of seasons" [value]="season">  
+                                                 {{season}}
+                                               </mat-radio-button> -->
+                                               <mat-radio-button class="example-radio-button custom-radio-team"  [value]="4" checked>  
+                                                Teams List
+                                              </mat-radio-button>
+                                              <!-- <mat-radio-button class="example-radio-button custom-radio-team"  [value]="7">  
+                                                
+                                               Bracket-Losing Team
+                                              </mat-radio-button>
+                                              <mat-radio-button class="example-radio-button custom-radio-team"  [value]="8">  
+                                                Bracket-Winning Team
+                                              </mat-radio-button> -->
+                                              <mat-radio-button  class="example-radio-button custom-radio-team"  [value]="5"  disabled>  
+                                                Pool & Bracket-Combined
+                                              </mat-radio-button>
+                                              <mat-radio-button class="example-radio-button custom-radio-team"  [value]="6">  
+                                                No Team (Bye)
+                                              </mat-radio-button>
+                                             
+                                             </mat-radio-group>                                      
+                                         </div>
+                                         <div class="col-md-6">
+                                           <mat-form-field  *ngIf="formfeild1==true">
+                                               <!-- <mat-label>Select</mat-label> -->
+                                               <mat-select [(value)]="bottombracketteams" #fontSize value="16px" (selectionChange)="triggerResize2()">
+                                                 <mat-option *ngFor="let value of bracket" value="{{value.val}}" value="Select">{{value.val}}</mat-option>
+                                                 
+                                               </mat-select>
+                                             </mat-form-field>
+                                         </div>
+                                       </div>
+                                       </div>
+                                     </div>
+             
+                                 </div>
+                                   
+                               </div>
+                               <div class="col-md-7">
+                                 <div class="team-bracket">
+                                   <div class="bg-white p-3">
+                                    <app-bracketsample [parentValue]="teams" [bracketType]="selected"  [matchup]="matchupid" ></app-bracketsample>
+                                   </div>
+                                 </div>
+                                   
+                               </div>
+                             </div>
+                           </div>
+                         </div>
+                     
+                 </div> 
+                      
+                   </div>
+                   <div class="stepper-button">   
+                      <button  type="button" (click)="backsteup(i,stepper)" mat-button >Back</button>
+                      <!--   matStepperNext    matStepperPrevious   --> 
+                      <button  type="button" (click)="nextsteup(i,stepper)" mat-raised-button  class="btn-color-green">Next</button>
+                    
+                     </div>
+                </form>
+              
+              </mat-step>
+            </mat-horizontal-stepper>
+          </form>
+      <!-- <mat-horizontal-stepper [linear]="isLinear" #stepper>
+        <mat-step  [stepControl]="firstFormGroup">
+          <form [formGroup]="firstFormGroup">
+            <ng-template matStepLabel>Detail</ng-template>
+             <div class="container">
+               <div class="row">
+                 <div class="col-md-4">
+                    <mat-form-field>
+                      <input matInput placeholder="Bracket Name">
+                    </mat-form-field>
+                
+                    <div class="py-3">
+                      <mat-form-field>
+                        <mat-label>Auto scheduler should use:</mat-label>
+                        <mat-select [(value)]="venues">
+                          <mat-option value="allvenues">All Venues </mat-option>
+                        </mat-select>
+                      </mat-form-field>
+                    </div>
+                    
+                     <h6 class="py-3">Auto scheduler should look at days:</h6>
+                    
+
+                     <mat-checkbox formControlName="hideRequired" style="margin-right: 10px;" *ngFor="let value of VenueDateArr">  {{ServerTimestamp(value.dateval)}} </mat-checkbox> 
+
+                     <h6 class="pt-3">How long will these matchups need the court for?</h6>
+                     <p>(Hours:Minutes)</p>
+
+                     <div class="default-time-example example-full-width mt-3"> 
+
+                        <pre class="custom-date-fix py-1"> {{timeDetail.hour}}:{{timeDetail.minute}}</pre> 
+                        <button mat-icon-button matSuffix (click)="timerfunc()" class="button-custom" >  
+                        <mat-icon aria-hidden="false" aria-label="av_timer">av_timer</mat-icon>   
+                        </button>      
+                        <ngb-timepicker class="custom-timepicker"  [(ngModel)]="timeDetail" (ngModelChange)="onChange($event)" formControlName="timeDetail" *ngIf="timerDetail"></ngb-timepicker>   
+                        
+                       
+                    </div>
+                    <div class="py-4">
+                    <mat-form-field>
+                      <mat-label>Bracket Type</mat-label>
+                      <mat-select [(value)]="selected"  (selectionChange)="someMethod($event.value)">
+                        <mat-option value="option1">Single Elimination </mat-option>
+                        <mat-option value="option2">Double Elimination </mat-option>
+                        <mat-option value="option3">3 Game Guarantee</mat-option>
+                      </mat-select>
+                    </mat-form-field>
+                   </div>
+                   <div>
+                      <mat-form-field>
+                          <mat-label>Number of Teams</mat-label>
+                          <mat-select [(value)]="teams" (selectionChange)="changeteam($event.value)">
+                              <mat-option  *ngFor="let value of teamsoption" value="{{value}}">{{value}}</mat-option>
+                          </mat-select>
+                        </mat-form-field>
+                        <h4 >Bracket Options</h4>
+                        <p class="py-4">{{teams}} Team Three Game Guarantee</p>
+                   </div>
+
+
+                 </div>
+                 <div class="col-md-8">
+                    
+
+
+
+                    <app-bracketsample [parentValue]="teams" [bracketType]="selected" ></app-bracketsample>
+                    
+                  
+                 </div>
+               </div>
+
+             </div>
+             <div class="stepper-button">
+               <button mat-raised-button matStepperNext class="btn-color-green">Next</button>
+              </div>
+          </form>
+        </mat-step>
+      
+            <mat-step    [stepControl]="secondFormGroup">  
+          <form [formGroup]="secondFormGroup">
+            <ng-template matStepLabel>Matchup {{i+2}}</ng-template>
+            
+            <mat-form-field>
+                <mat-label>Top Team</mat-label>
+                <mat-select [(value)]="selectedtop"  (selectionChange)="someMethod($event.value)">
+                  <mat-option *ngFor="let value of bracket" value="value.val">{{value.val}} </mat-option>
+               
+                </mat-select>
+              </mat-form-field>
+              <mat-form-field>
+                  <mat-label>Bottom Team</mat-label>
+                  <mat-select [(value)]="selectedbottom"  (selectionChange)="someMethod($event.value)">
+                      <mat-option *ngFor="let value of bracket" value="value.val">{{value.val}} </mat-option>
+                  
+                  </mat-select>
+                </mat-form-field>
+                <app-bracketsample [parentValue]="teams" [bracketType]="selected" ></app-bracketsample>
+            
+            
+
+            <div>
+              <button mat-button matStepperPrevious>Back</button>
+              <button mat-button matStepperNext>Next</button>
+            </div>
+          </form>
+        </mat-step>
+        
+      </mat-horizontal-stepper> -->
+      <!-- <button mat-raised-button (click)="addItem()">
+          add item
+        </button> -->
+      <!-- <form [formGroup]="formGroup">
+          <mat-horizontal-stepper  formArrayName="form"> -->
+            <!-- <mat-step [formGroupName]="i" *ngFor="let customerGroup of formGroup.controls.form.controls; let i = index">
+              <ng-template matStepLabel>Step {{i + 1}}</ng-template>
+
+             
+              <div class="container" *ngIf="detail==true">
+                <div class="row">
+                  <div class="col-md-4">
+                     <mat-form-field>
+                       <input matInput placeholder="Bracket Name">
+                     </mat-form-field>
+                 
+                     <div class="py-3">
+                       <mat-form-field>
+                         <mat-label>Auto scheduler should use:</mat-label>
+                         <mat-select [(value)]="venues">
+                           <mat-option value="allvenues">All Venues </mat-option>
+                         </mat-select>
+                       </mat-form-field>
+                     </div>
+                     
+                      <h6 class="py-3">Auto scheduler should look at days:</h6>
+                     
+ 
+                      <mat-checkbox formControlName="hideRequired" style="margin-right: 10px;" *ngFor="let value of VenueDateArr">  {{ServerTimestamp(value.dateval)}} </mat-checkbox> 
+ 
+                      <h6 class="pt-3">How long will these matchups need the court for?</h6>
+                      <p>(Hours:Minutes)</p>
+ 
+                      <div class="default-time-example example-full-width mt-3"> 
+ 
+                         <pre class="custom-date-fix py-1"> {{timeDetail.hour}}:{{timeDetail.minute}}</pre> 
+                         <button mat-icon-button matSuffix (click)="timerfunc()" class="button-custom" >  
+                         <mat-icon aria-hidden="false" aria-label="av_timer">av_timer</mat-icon>   
+                         </button>      
+                         <ngb-timepicker class="custom-timepicker"  [(ngModel)]="timeDetail" (ngModelChange)="onChange($event)" formControlName="timeDetail" *ngIf="timerDetail"></ngb-timepicker>   
+                         
+                        
+                     </div>
+                     <div class="py-4">
+                     <mat-form-field>
+                       <mat-label>Bracket Type</mat-label>
+                       <mat-select [(value)]="selected"  (selectionChange)="someMethod($event.value)">
+                         <mat-option value="option1">Single Elimination </mat-option>
+                         <mat-option value="option2">Double Elimination </mat-option>
+                         <mat-option value="option3">3 Game Guarantee</mat-option>
+                       </mat-select>
+                     </mat-form-field>
+                    </div>
+                    <div>
+                       <mat-form-field>
+                           <mat-label>Number of Teams</mat-label>
+                           <mat-select [(value)]="teams" (selectionChange)="addItem($event.value)">
+                               <mat-option  *ngFor="let value of teamsoption" value="{{value}}">{{value}}</mat-option>
+                           </mat-select>
+                         </mat-form-field>
+                         <h4 >Bracket Options</h4>
+                         <p class="py-4">{{teams}} Team Three Game Guarantee</p>
+                    </div>
+ 
+ 
+                  </div>
+                  <div class="col-md-8">
+                     
+                      <div class="container">
+                          <div class="row"> -->
+                            <!-- <div class="col-md-4">
+                               <mat-form-field>
+                                 <input matInput placeholder="Bracket Name">
+                               </mat-form-field>
+                           
+                               <div class="py-3">
+                                 <mat-form-field>
+                                   <mat-label>Auto scheduler should use:</mat-label>
+                                   <mat-select [(value)]="venues">
+                                     <mat-option value="allvenues">All Venues </mat-option>
+                                   </mat-select>
+                                 </mat-form-field>
+                               </div>
+                               
+                                <h6 class="py-3">Auto scheduler should look at days:</h6>
+                               
+           
+                                <mat-checkbox formControlName="hideRequired" style="margin-right: 10px;" *ngFor="let value of VenueDateArr">  {{ServerTimestamp(value.dateval)}} </mat-checkbox> 
+           
+                                <h6 class="pt-3">How long will these matchups need the court for?</h6>
+                                <p>(Hours:Minutes)</p>
+           
+                                <div class="default-time-example example-full-width mt-3"> 
+           
+                                   <pre class="custom-date-fix py-1"> {{timeDetail.hour}}:{{timeDetail.minute}}</pre> 
+                                   <button mat-icon-button matSuffix (click)="timerfunc()" class="button-custom" >  
+                                   <mat-icon aria-hidden="false" aria-label="av_timer">av_timer</mat-icon>   
+                                   </button>      
+                                   <ngb-timepicker class="custom-timepicker"  [(ngModel)]="timeDetail" (ngModelChange)="onChange($event)" formControlName="timeDetail" *ngIf="timerDetail"></ngb-timepicker>   
+                                   
+                                  
+                               </div>
+                               <div class="py-4">
+                               <mat-form-field>
+                                 <mat-label>Bracket Type</mat-label>
+                                 <mat-select [(value)]="selected"  (selectionChange)="someMethod($event.value)">
+                                   <mat-option value="option1">Single Elimination </mat-option>
+                                   <mat-option value="option2">Double Elimination </mat-option>
+                                   <mat-option value="option3">3 Game Guarantee</mat-option>
+                                 </mat-select>
+                               </mat-form-field>
+                              </div>
+                              <div>
+                                 <mat-form-field>
+                                     <mat-label>Number of Teams</mat-label>
+                                     <mat-select [(value)]="teams" (selectionChange)="changeteam($event.value)">
+                                         <mat-option  *ngFor="let value of teamsoption" value="{{value}}">{{value}}</mat-option>
+                                     </mat-select>
+                                   </mat-form-field>
+                                   <h4 >Bracket Options</h4>
+                                   <p class="py-4">{{teams}} Team Three Game Guarantee</p>
+                              </div>
+           
+           
+                            </div> -->
+                            <!-- <div class="col-md-8">
+                <app-bracketsample [parentValue]="teams" [bracketType]="selected"></app-bracketsample>
+                            </div>
+                          </div> -->
+           
+                        <!-- </div>
+                        <div class="stepper-button">
+                          <button mat-raised-button matStepperNext class="btn-color-green">Next</button>
+                         </div>
+ 
+ 
+                    
+                     
+                   
+                  </div>
+                </div>
+ 
+              </div> -->
+           
+
+
+
+
+
+
+
+
+
+
+
+
+              <!-- <mat-form-field  *ngIf="detail==false" > 
+                <input matInput placeholder="Address" formControlName="cont" required>
+              </mat-form-field>
+            <div>
+              <button mat-button matStepperPrevious>Back</button>
+              <button mat-button matStepperNext (click)="nextsteup()">Next</button>
+            </div>
+            </mat-step> -->
+          <!-- </mat-horizontal-stepper>
+        </form> -->
+    </div>
+  </div>
+</div>
+</section>
+<app-footer></app-footer>

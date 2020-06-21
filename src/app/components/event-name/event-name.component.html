@@ -1,0 +1,761 @@
+<app-toolbarpage></app-toolbarpage>
+<section class="event-name">
+  <div class="event-name-header pt-4 pb-3">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12">
+          <div class="event-name-header-inner pt-3">
+           <h4>Event name</h4>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- tab start -->
+  <section id="tabs" class="pt-5">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-12 ">
+            <nav>
+              <div class="nav nav-tabs nav-fill" id="nav-tab" role="tablist">
+                <a class="nav-item nav-link active" id="nav-groups-tab" data-toggle="tab" href="#nav-groups" role="tab" aria-controls="nav-groups" aria-selected="true">Divisions</a>
+                <a class="nav-item nav-link" id="nav-details-tab" data-toggle="tab" href="#nav-details" role="tab" aria-controls="nav-details" aria-selected="false">Details</a>
+                <a class="nav-item nav-link" id="nav-documents-tab" data-toggle="tab" href="#nav-documents" role="tab" aria-controls="nav-documents" aria-selected="false">Documents</a>
+                 <a class="nav-item nav-link" id="nav-reports-tab" data-toggle="tab" href="#nav-reports" role="tab" aria-controls="nav-reports" aria-selected="false">Reports</a>
+
+                <a class="nav-item nav-link" id="nav-alerts-tab" data-toggle="tab" href="#nav-alerts" role="tab" aria-controls="nav-alerts" aria-selected="false">Alerts</a>
+                <a class="nav-item nav-link" id="nav-marketing-tab" data-toggle="tab" href="#nav-marketing" role="tab" aria-controls="nav-marketing" aria-selected="false">Drag and drop</a>
+                <a class="nav-item nav-link" id="nav-publish-tab" data-toggle="tab" href="#nav-publish" role="tab" aria-controls="nav-publish" aria-selected="false">Publish</a>
+              </div>
+            </nav>
+            <div class="tab-content py-3 px-3 px-sm-0" id="nav-tabContent">
+              <div class="tab-pane fade show active" id="nav-groups" role="tabpanel" aria-labelledby="nav-groups-tab">
+              <div class="row">
+                <div class="col-md-3">
+                  <ul class="list-group list-group-flush">
+                      <li id="x_{{i}}" (click)="chooseevent(value.divisionitem,i)" class="list-group-item" *ngFor="let value of evennamearray;let i=index" >{{value.divisionitem}}</li>
+                      <!-- <li (click)="selectitem(value,i)" class="list-group-item active" *ngFor="let value of eventarray;let i=index">{{value.divisionitem}}</li> -->
+                      <!-- <li (click)="selectitem('General')" class="list-group-item active">General</li> -->
+                      <p class="list-group-item">Options</p>
+                      <li (click)="newdivision()" class="list-group-item bg-light"><i class="fa fa-plus pr-2"></i>Add New Division</li>
+                      <li class="list-group-item bg-light"><i class="fa fa-question-circle pr-2"></i>Help Adding Division</li>
+                  </ul>
+                </div>
+                <div class="col-md-9">
+                  <div class="group-body">
+                    <!-- <div class="group-header py-4">
+                        <h3 class="px-4"><span class="border-left-custom"></span>{{eventname}}<button mat-raised-button color="accent" class="float-right"><i class="fa fa-cog" aria-hidden="true"></i> Division Options</button> </h3>
+                    </div> -->
+                    <div class="group-header py-4">
+                      <h3 class="px-4"><span class="border-left-custom"></span>{{eventtitle}}<button mat-raised-button color="accent" class="float-right"><i class="fa fa-cog" aria-hidden="true"></i> Division Options</button> </h3>
+                  </div>                    
+                    <div class="team-required py-4 px-4">
+                      <article class="bg-white p-2">
+                        <div *ngIf="addteams==false">
+                        <h4>Teams Required</h4>
+                        <p>You must first add teams before creating a pool or bracket. Add teams below.</p>
+                        </div> 
+                        <div class="row" *ngIf="addteams==true">
+                          <div class="col-md-4">
+                            <a class="icons-link" routerLink="/">
+                              <div class="create-new-pool text-center">
+                                <div class="icons py-2">
+                                  <i class="fa fa-th-list primary-text" aria-hidden="true" style="font-size: 40px;"></i>
+                                </div>
+                                <h6 class="text-body">Create New Pool</h6>
+                              </div>
+                            </a>
+                          </div>
+                          <div class="col-md-4">
+                          <!-- <a class="icons-link" routerLink="/create-new-bracket"> -->
+                            <a class="icons-link" (click)="navigatetobracket()" >
+                            <div class="create-new-pool text-center">
+                              <div class="icons py-2">
+                                <i class="fa fa-sitemap primary-text" aria-hidden="true" style="font-size: 40px;"></i>
+                              </div>
+                              <h6 class="text-body">Create New Bracket</h6>
+                            </div>
+                          </a>
+                          </div>
+                        </div>
+                      </article>
+                    </div>
+                    <div class="row">
+                      <div class="col-md-6">
+                        <div class="group-teams py-4 pl-4">
+                          <div class="bg-white p-3">
+                            <p class="pt-1"><i class="fa fa-users pr-1" aria-hidden="true"></i>Teams
+                              <button *ngIf="buttonchange==true" mat-stroked-button class="float-right" (click)="editteams()" >
+                                  <i class="fa fa-pencil-square-o pr-1" aria-hidden="true"></i>Edit
+                              </button> 
+                              <button *ngIf="buttonchange==false" mat-stroked-button class="float-right" (click)="addteamsfunc()" >
+                                  <i class="fa fa-pencil-square-o pr-1" aria-hidden="true"></i>AddTeams
+                              </button> 
+                              <button mat-stroked-button class="float-right mr-2"><i class="fa fa-question-circle pr-1" aria-hidden="true"></i>Help</button>
+                            </p>
+                          </div>
+                          <hr style="margin: 0">
+                          <div class="bg-white p-2">
+                            <article class="text-center py-2" *ngIf="editinput==false">
+                              <h4>No Teams Found</h4>
+                              <p>Click the Edit button above to get started</p>
+                            </article>
+                            <div  class="table-main-top" *ngIf="editinput==true">
+                                <div >
+                                    <table class="custom-table" *ngIf="eventinputsave==true">
+                                        <thead class="thead-light" *ngIf="headeractive==true">
+                                          <tr>
+                                            <th>#</th>
+                                            <th>Name</th>
+                                            <th></th>
+                                          </tr>
+                                        </thead>
+                                        <tbody>
+                                          <tr *ngFor="let valueinput of eventinputarray;let i=index">
+                                            <td>{{i+1}}</td>
+                                            <td> 
+                                              <mat-form-field class="team-input example-full-width" style="margin-top: 5px;">
+                                                <input matInput [(ngModel)]="eventinputarray[i].val" placeholder="Enter Name">
+                                              </mat-form-field>
+                                              <!-- <input type="text" [(ngModel)]="eventinputarray[i].val"> -->
+                                            </td>
+                                            <td>
+                                              <button (click)="delete(i,eventinputarray[i].val)" mat-flat-button class="team-delete-btn" color="primary"><i class="fa fa-trash" aria-hidden="true" style="font-size: 20px;"></i>
+                                            </button>
+                                          </td>
+                                          </tr>
+                                        </tbody>
+                                      </table>
+                                    <!-- <article *ngIf="eventinputsave==true" class="text-center py-2" >
+                                        <p>#{{i+1}}</p>
+                                        <input type="text" [(ngModel)]="eventinputarray[i].val" >
+                                        <button (click)="delete(i,eventinputarray[i].val)">delete</button>
+                                      </article> -->
+                                      
+                                      
+                                    <!-- <article *ngFor="let value of valueinput.inputteams;let in=index" class="text-center py-2" >
+                                      
+                                    <input type="text" [(ngModel)]="value[i].inputteams[in].val" >
+                                  </article> -->
+                                  </div>
+                                  <table *ngIf="eventinputsave==false">
+                                    <thead class="py-2">
+                                      <tr>
+                                        <th>#</th>
+                                        <th>Name</th>
+                                      </tr>
+                                    </thead>
+                                    <tbody>
+                                      <tr *ngFor="let value of eventinputarray;let i=index">
+                                        <td>{{i+1}}</td>
+                                        <td>{{value.val}}</td>
+                                      </tr>
+                                    </tbody>
+                                  </table>
+
+                                  <!-- <div *ngIf="eventinputsave==false">
+                                    <div *ngFor="let value of eventinputarray;let i=index">
+                                      <p>{{i+1}}</p>
+                                      <p>{{value.val}}</p>
+                                    </div>
+                                  </div> -->
+                            <!-- <div *ngFor="let valueinput of eventarray;let i=index">
+                              <article *ngFor="let value of valueinput.inputteams;let in=index" class="text-center py-2" >
+                                
+                              <input type="text" [(ngModel)]="value[i].inputteams[in].val" >
+                            </article>
+                            </div>
+                            <div *ngFor="let valueinput of eventarray;let i=index">
+                              <div *ngFor="let value of valueinput.inputteams;let in=index">
+                                    <p>{{value[i].inputteams[in].val}}</p>
+                              </div>
+
+                            </div> -->
+                            <!-- <div *ngIf="inputstatus==false">
+                              <p>hii</p>
+                            </div> -->
+                            <!-- <button (click)="save()">Save</button> -->
+                            <button *ngIf="buttonactive==true" (click)="save()" mat-flat-button class="team-save-btn" color="primary">Save</button>
+
+                          </div>
+
+                          </div>
+
+                        </div>
+                      </div>
+                      <div class="col-md-6">
+                        <div class="tie-breakers py-4 pr-4">
+                            <div class="bg-white p-3">
+                                <p class="pt-1"><i class="fa fa-unlink pr-1" aria-hidden="true"></i>Tie tie-breakers<button mat-stroked-button class="float-right mr-2"><i class="fa fa-question-circle pr-2" aria-hidden="true"></i>Help</button>
+                                </p>
+                                <span class="drag-drop">
+                                  Click and hold on  <i class="fa fa-arrows-v px-1" aria-hidden="true"></i>  for Drag & Drop Sort
+                              </span>
+                              <hr>
+                              <div class="section1">
+                                <mat-card class="result pt-3 pb-1">
+                                  <mat-card-content>
+                                    <section class="section-1">
+                                      <div class="row">
+                                        <div class="col-md-1"> 
+                                          <span class="drag-drop-icon">
+                                              <!-- <i class="fa fa-ellipsis-v"></i> -->
+                                          </span>
+                                        </div>
+                                        <div class="col-md-7">
+                                          <p>Win Percentage</p> 
+                                        </div>
+                                        <div class="col-md-1">
+                                          <i class="fa fa-question-circle pr-1" aria-hidden="true"></i>
+                                        </div>
+                                        <div class="col-md-2">
+                                          <mat-slide-toggle
+                                            class="example-margin"
+                                            [color]="color"
+                                            [checked]="checked"
+                                            [disabled]="disabled">
+                                          </mat-slide-toggle>
+                                        </div>
+                                      </div>
+                                    </section>
+                                  </mat-card-content>
+                                </mat-card>
+                              </div>
+                              <div class="section2 pt-2">
+                                <mat-card class="result pt-3 pb-1">
+                                  <mat-card-content>
+                                    <section class="section-1">
+                                      <div class="row">
+                                        <div class="col-md-1"> 
+                                          <span class="drag-drop-icon">
+                                              <i class="fa fa-ellipsis-v"></i>
+                                          </span>
+                                        </div>
+                                        <div class="col-md-7">
+                                          <p> Head to Head  </p> 
+                                        </div>
+                                        <div class="col-md-1">
+                                          <i class="fa fa-question-circle pr-1" aria-hidden="true"></i>
+                                        </div>
+                                        <div class="col-md-2">
+                                          <mat-slide-toggle
+                                            class="example-margin"
+                                            [color]="color"
+                                            [checked]="checked"
+                                            [disabled]="disabled">
+                                          </mat-slide-toggle>
+                                        </div>
+                                      </div>
+                                    </section>
+                                  </mat-card-content>
+                                </mat-card>
+                              </div>
+                              <div class="section3 pt-2">
+                                <mat-card class="result pt-3 pb-1">
+                                  <mat-card-content>
+                                    <section class="section-1">
+                                      <div class="row">
+                                        <div class="col-md-1"> 
+                                          <span class="drag-drop-icon">
+                                              <i class="fa fa-ellipsis-v"></i>
+                                          </span>
+                                        </div>
+                                        <div class="col-md-7">
+                                          <p>Points Differential 
+                                            <mat-form-field class="example-full-width custom-input">
+                                              <input type="number" matInput value="15">
+                                            </mat-form-field>
+                                          </p> 
+                                        </div>
+                                        <div class="col-md-1">
+                                          <i class="fa fa-question-circle pr-1" aria-hidden="true"></i>
+                                        </div>
+                                        <div class="col-md-2">
+                                          <mat-slide-toggle
+                                            class="example-margin"
+                                            [color]="color"
+                                            [checked]="checked"
+                                            [disabled]="disabled">
+                                          </mat-slide-toggle>
+                                        </div>
+                                      </div>
+                                    </section>
+                                  </mat-card-content>
+                                </mat-card>
+                              </div>
+                              <div class="section4 pt-2">
+                                <!-- <mat-card class="result pt-3 pb-1">
+                                  <mat-card-content>
+                                    <section class="section-1">
+                                      <div class="row">
+                                        <div class="col-md-1"> 
+                                          <span class="drag-drop-icon">
+                                              <i class="fa fa-ellipsis-v"></i>
+                                          </span>
+                                        </div>
+                                        <div class="col-md-7">
+                                          <p>First Half Points Against </p> 
+                                        </div>
+                                        <div class="col-md-1">
+                                          <i class="fa fa-question-circle pr-1" aria-hidden="true"></i>
+                                        </div>
+                                        <div class="col-md-2">
+                                          <mat-slide-toggle
+                                            class="example-margin"
+                                            [color]="color"
+                                            [checked]="checked"
+                                            [disabled]="disabled">
+                                          </mat-slide-toggle>
+                                        </div>
+                                      </div>
+                                    </section>
+                                  </mat-card-content>
+                                </mat-card> -->
+                              </div>
+                              <div class="section5 pt-2">
+                                <!-- <mat-card class="result pt-3 pb-1">
+                                  <mat-card-content>
+                                    <section class="section-1">
+                                      <div class="row">
+                                        <div class="col-md-1"> 
+                                          <span class="drag-drop-icon">
+                                              <i class="fa fa-ellipsis-v"></i>
+                                          </span>
+                                        </div>
+                                        <div class="col-md-7">
+                                          <p>First Half Points For</p> 
+                                        </div>
+                                        <div class="col-md-1">
+                                          <i class="fa fa-question-circle pr-1" aria-hidden="true"></i>
+                                        </div>
+                                        <div class="col-md-2">
+                                          <mat-slide-toggle
+                                            class="example-margin"
+                                            [color]="color"
+                                            [checked]="checked"
+                                            [disabled]="disabled">
+                                          </mat-slide-toggle>
+                                        </div>
+                                      </div>
+                                    </section>
+                                  </mat-card-content>
+                                </mat-card> -->
+                              </div>
+                              <div class="section6 pt-2">
+                                <!-- <mat-card class="result pt-3 pb-1">
+                                  <mat-card-content>
+                                    <section class="section-1">
+                                      <div class="row">
+                                        <div class="col-md-1"> 
+                                          <span class="drag-drop-icon">
+                                              <i class="fa fa-ellipsis-v"></i>
+                                          </span>
+                                        </div>
+                                        <div class="col-md-7">
+                                          <p>Second Half Points Against  </p> 
+                                        </div>
+                                        <div class="col-md-1">
+                                          <i class="fa fa-question-circle pr-1" aria-hidden="true"></i>
+                                        </div>
+                                        <div class="col-md-2">
+                                          <mat-slide-toggle
+                                            class="example-margin"
+                                            [color]="color"
+                                            [checked]="checked"
+                                            [disabled]="disabled">
+                                          </mat-slide-toggle>
+                                        </div>
+                                      </div>
+                                    </section>
+                                  </mat-card-content>
+                                </mat-card> -->
+                              </div>
+                              <div class="section7 pt-2">
+                                <!-- <mat-card class="result pt-3 pb-1">
+                                  <mat-card-content>
+                                    <section class="section-1">
+                                      <div class="row">
+                                        <div class="col-md-1"> 
+                                          <span class="drag-drop-icon">
+                                              <i class="fa fa-ellipsis-v"></i>
+                                          </span>
+                                        </div>
+                                        <div class="col-md-7">
+                                          <p>Second Half Points For </p> 
+                                        </div>
+                                        <div class="col-md-1">
+                                          <i class="fa fa-question-circle pr-1" aria-hidden="true"></i>
+                                        </div>
+                                        <div class="col-md-2">
+                                          <mat-slide-toggle
+                                            class="example-margin"
+                                            [color]="color"
+                                            [checked]="checked"
+                                            [disabled]="disabled">
+                                          </mat-slide-toggle>
+                                        </div>
+                                      </div>
+                                    </section>
+                                  </mat-card-content>
+                                </mat-card> -->
+                              </div>
+                              <div class="section8 pt-2">
+                                <mat-card class="result pt-3 pb-1">
+                                  <mat-card-content>
+                                    <section class="section-1">
+                                      <div class="row">
+                                        <div class="col-md-1"> 
+                                          <span class="drag-drop-icon">
+                                              <i class="fa fa-ellipsis-v"></i>
+                                          </span>
+                                        </div>
+                                        <div class="col-md-7">
+                                          <p>Final Points Against</p> 
+                                        </div>
+                                        <div class="col-md-1">
+                                          <i class="fa fa-question-circle pr-1" aria-hidden="true"></i>
+                                        </div>
+                                        <div class="col-md-2">
+                                          <mat-slide-toggle
+                                            class="example-margin"
+                                            [color]="color"
+                                            [checked]="checked"
+                                            [disabled]="disabled">
+                                          </mat-slide-toggle>
+                                        </div>
+                                      </div>
+                                    </section>
+                                  </mat-card-content>
+                                </mat-card>
+                              </div>
+                              <div class="section9 pt-2">
+                                <mat-card class="result pt-3 pb-1">
+                                  <mat-card-content>
+                                    <section class="section-1">
+                                      <div class="row">
+                                        <div class="col-md-1"> 
+                                          <span class="drag-drop-icon">
+                                              <i class="fa fa-ellipsis-v"></i>
+                                          </span>
+                                        </div>
+                                        <div class="col-md-7">
+                                          <p>Final Points For</p> 
+                                        </div>
+                                        <div class="col-md-1">
+                                          <i class="fa fa-question-circle pr-1" aria-hidden="true"></i>
+                                        </div>
+                                        <div class="col-md-2">
+                                          <mat-slide-toggle
+                                            class="example-margin"
+                                            [color]="color"
+                                            [checked]="checked"
+                                            [disabled]="disabled">
+                                          </mat-slide-toggle>
+                                        </div>
+                                      </div>
+                                    </section>
+                                  </mat-card-content>
+                                </mat-card>
+                              </div>
+                              <div class="section10 pt-2">
+                                <!-- <mat-card class="result pt-3 pb-1">
+                                  <mat-card-content>
+                                    <section class="section-1">
+                                      <div class="row">
+                                        <div class="col-md-1"> 
+                                          <span class="drag-drop-icon">
+                                              <i class="fa fa-ellipsis-v"></i>
+                                          </span>
+                                        </div>
+                                        <div class="col-md-7">
+                                          <p>Forfeit Games</p> 
+                                        </div>
+                                        <div class="col-md-1">
+                                          <i class="fa fa-question-circle pr-1" aria-hidden="true"></i>
+                                        </div>
+                                        <div class="col-md-2">
+                                          <mat-slide-toggle
+                                            class="example-margin"
+                                            [color]="color"
+                                            [checked]="checked"
+                                            [disabled]="disabled">
+                                          </mat-slide-toggle>
+                                        </div>
+                                      </div>
+                                    </section>
+                                  </mat-card-content>
+                                </mat-card> -->
+                              </div>
+                              <div class="section11 pt-2">
+                                <mat-card class="result pt-3 pb-1">
+                                  <mat-card-content>
+                                    <section class="section-1">
+                                      <div class="row">
+                                        <div class="col-md-1"> 
+                                          <span class="drag-drop-icon">
+                                              <i class="fa fa-ellipsis-v"></i>
+                                          </span>
+                                        </div>
+                                        <div class="col-md-7">
+                                          <p> Coin Toss </p> 
+                                        </div>
+                                        <div class="col-md-1">
+                                          <i class="fa fa-question-circle pr-1" aria-hidden="true"></i>
+                                        </div>
+                                        <div class="col-md-2">
+                                          <mat-slide-toggle
+                                            class="example-margin"
+                                            [color]="color"
+                                            [checked]="checked"
+                                            [disabled]="disabled">
+                                          </mat-slide-toggle>
+                                        </div>
+                                      </div>
+                                    </section>
+                                  </mat-card-content>
+                                </mat-card>
+                              </div>
+                              <div class="section12 pt-2">
+                                <!-- <mat-card class="result pt-3 pb-1">
+                                  <mat-card-content>
+                                    <section class="section-1">
+                                      <div class="row">
+                                        <div class="col-md-1"> 
+                                          <span class="drag-drop-icon">
+                                              <i class="fa fa-ellipsis-v"></i>
+                                          </span>
+                                        </div>
+                                        <div class="col-md-7">
+                                          <p>Points Differential Halftime
+                                            <mat-form-field class="example-full-width custom-input">
+                                              <input type="number" matInput value="15">
+                                            </mat-form-field>
+                                          </p> 
+                                        </div>
+                                        <div class="col-md-1">
+                                          <i class="fa fa-question-circle pr-1" aria-hidden="true"></i>
+                                        </div>
+                                        <div class="col-md-2">
+                                          <mat-slide-toggle
+                                            class="example-margin"
+                                            [color]="color"
+                                            [checked]="checked"
+                                            [disabled]="disabled">
+                                          </mat-slide-toggle>
+                                        </div>
+                                      </div>
+                                    </section>
+                                  </mat-card-content>
+                                </mat-card> -->
+                              </div>
+                              <div class="section13 pt-2">
+                                <mat-card class="result pt-3 pb-1">
+                                  <mat-card-content>
+                                    <section class="section-1">
+                                      <div class="row">
+                                       <div class="col-md-12">
+                                         <p><a routerLink="/"><i class="fa fa-envelope pr-2" aria-hidden="true"></i>Request a Tie Breaker </a><i class="fa fa-question-circle pl-3" aria-hidden="true"></i>
+                                         </p>
+                                       </div>
+                                      </div>
+                                    </section>
+                                  </mat-card-content>
+                                </mat-card>
+                              </div>
+                            </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              </div>
+              <div class="tab-pane fade" id="nav-details" role="tabpanel" aria-labelledby="nav-details-tab">
+                <div class="details-body text-center pt-4">
+                 <button mat-raised-button color="accent" routerLink="/create-tournament">Edit Details</button>
+                </div>
+              </div>
+              <div class="tab-pane fade" id="nav-documents" role="tabpanel" aria-labelledby="nav-documents-tab">
+                <div class="documents-body custom-bg-color py-4">
+                  <div class="container">
+                    <div class="row">
+                      <div class="col-md-12">
+                        <div class="documents-body-header">
+                          <h4 class="pt-3">
+                            <i class="fa fa-upload mr-2" aria-hidden="true"></i>Tournament Documents
+                          </h4>
+                          <hr>
+                        </div>
+                        <div class="documents-body-inner bg-white">
+                          <p class="font-size-14 py-4 pl-3">Drag & Drop files or click in the gray area to upload public documents that everyone viewing your tournament may download.<br>
+                          <strong>Accepted File Types: </strong>.txt, .doc, .docx, .xls, .xlsx, .pdf, .pptx, .eps, .psd (all others will not be uploaded)</p>
+                        </div>
+                        <div class="file-upload py-5 text-center bg-white">
+                            <input type="file" id="myFile">
+                        </div> 
+                      </div>
+                    </div>
+                  </div>
+
+                </div>
+              </div>
+              <!-- Reports -->
+              <div class="tab-pane fade" id="nav-reports" role="tabpanel" aria-labelledby="nav-reports-tab">
+                <div class="reports-body custom-bg-color py-4">
+                  <div class="container">
+                    <div class="row">
+                      <div class="col-md-12">
+                        <div class="reports-body-header">
+                          <h4 class="pt-3">
+                            <i class="fa fa-file mr-2" aria-hidden="true"></i>Reports
+                          </h4>
+                          <hr>
+                          <div class="reports-list">
+                           <ul class="list-inline bg-white p-3">
+                             <!-- <li><i class="fa fa-file-code-o mr-2"></i><a href="#">Master Schedule(HTML)</a></li> -->
+                             <li><i class="fa fa-file-pdf-o mr-2" aria-hidden="true"></i><a href="#">Master Schedule(PDF)</a></li>
+                             <!-- <li><i class="fa fa-file-code-o mr-2"></i><a href="#">Division Schedule(HTML)</a></li> -->
+                             <li><i class="fa fa-file-pdf-o mr-2" aria-hidden="true"></i><a href="#">Division Schedule(PDF)</a></li>
+                             <!-- <li><i class="fa fa-file-code-o mr-2"></i><a href="#">Court Schedule(HTML)</a></li> -->
+                             <li><i class="fa fa-file-pdf-o mr-2" aria-hidden="true"></i><a href="#">Court Schedule(PDF)</a></li>
+                           </ul>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="tab-pane fade" id="nav-alerts" role="tabpanel" aria-labelledby="nav-alerts-tab">
+                <section class="alerts custom-bg-color py-4">
+                  <div class="container">
+                      <div class="row">
+                        <div class="col-md-6">
+                          <div class="create-tournament-alert">
+                            <div class="create-tournament-alert-header">
+                              <p class="pt-2">Create Tournament Alert</p>
+                            </div>
+
+                          </div>
+                        </div>
+                        <div class="col-md-6"></div>
+                      </div>
+                  </div>
+                </section>
+              </div>
+              <div class="tab-pane fade" id="nav-marketing" role="tabpanel" aria-labelledby="nav-marketing-tab">
+                 <section class="marketing py-3">
+                   <!-- <div class="container">
+                     <div class="row">
+                       
+                        
+                        <full-calendar
+                        *ngIf="options"
+                          #fullcalendar
+                          [editable]="true"
+                          [events]="eventsModel"
+                          [header]="options.header"
+                         [plugins]="options.plugins"
+                          (dayRender)="dayRender($event,el)"
+                          (eventClick)="eventClick($event)"
+                          [columnHeaderHtml]="options.columnHeaderHtml"
+                        ></full-calendar>
+                        <div #external>
+                          <p>
+                            <strong>Draggable Events</strong>
+                          </p>
+                          <div *ngFor="let value of finalarrayvenue" class='fc-event'>
+                            <p>Heading:{{value.VenueDateArray.dateval}}</p>
+                          
+                          </div>
+                         
+                        </div>
+                       
+                     </div>
+                    </div> -->
+                    <div class="container-fluid">
+                        <div class="row">
+                          <div class="col-md-3">
+                            <div class="aside" #external>
+                                 <h5 class="bg-light p-3">Tournament</h5>
+                                 <!-- <h5 class="p-3 bg-light">Tournament</h5> -->
+                              <mat-card  class="example-card mt-2 fc-event" *ngFor= "let item of finalarrayvenue; let i= index">
+                                <mat-card-content class="pl-2 pt-4">
+                                    <p><strong>{{item.VenueName}}</strong></p>
+                                    <p *ngFor="let time of item.VenueCourtArray">Court Name:<strong>
+                                          {{time.CourtName}}
+                                    </strong></p>
+                                    <!-- <p>Date:<span class="date pl-2">{{item.date}} </span></p> -->
+                                   <!-- <p><strong>{{item.venue}} {{i+1}}</strong></p>
+                                   <p>Date:<span class="date pl-2">{{item.date}} </span></p>
+                                   <p>Start time:<span class="start-time pl-2">{{item.starttime}}</span></p>
+                                   <p>End time:<span class="end-time pl-2">{{item.endtime}}</span></p>
+                                   <P></P> -->
+                                 </mat-card-content>
+                               </mat-card>
+                            </div>
+                          </div>
+                           <div class="col-md-9">
+                              <full-calendar
+                              *ngIf="options"
+                                #fullcalendar
+                                [editable]="true"
+                                [events]="eventsModel"
+                                [header]="options.header"
+                               [plugins]="options.plugins"
+                                (dayRender)="dayRender($event,el)"
+                                (eventClick)="eventClick($event)"
+                                [columnHeaderHtml]="options.columnHeaderHtml"
+                              ></full-calendar>
+                           </div>
+                        </div>
+                       </div>
+                  </section>
+                </div>
+                <div class="tab-pane fade" id="nav-publish" role="tabpanel" aria-labelledby="nav-publish-tab">
+                <section class="publish custom-bg-color py-3">
+                  <div class="container">
+                    <div class="row">
+                      <div class="col-md-3">
+                        <div class="available-credits bg-white text-center px-3 py-4 my-4">
+                          <span class="available-credits-font">0</span>
+                          <h3>Available Credits</h3>
+                        </div>
+                        <div class="purchase-credits bg-white text-center px-3 py-4 my-4">
+                          <span class="purchase-credits-font">$</span>
+                          <h3>Purchase Credits</h3>
+                        </div>
+                      </div>
+                      <div class="col-md-9">
+                        <div class="publish-tournament-match border-radius-10 bg-white px-4 py-3 my-4">
+                          <article>
+                            <h3>Publish Your Tournament Matchups</h3>
+                            <p class="font-size-14">You must publish your tournament division in order for the public or mobile app to be able to view.</p>
+                            <p>Auto Publish Changes <i class="fa fa-question-circle pl-2 pr-5"></i>
+                              <mat-slide-toggle
+                              class="example-margin"
+                              [color]="color"
+                              [checked]="checked"
+                              [disabled]="disabled">
+                              </mat-slide-toggle>
+                            </p>
+                          </article>
+                        </div>
+                        <div class="missing-pools border-radius-10 bg-white px-4 py-3 my-4">
+                          <article>
+                            <h3>Missing Pools or Brackets</h3>
+                            <p class="font-size-14"> You must create a pool or bracket before you may publish.</p>
+                          </article>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </section>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </section>
+<app-footer></app-footer>

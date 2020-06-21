@@ -1,0 +1,18 @@
+.mt-68{margin-top: 68px;}
+.example-form {
+    min-width: 150px;
+    max-width: 100%;
+    width: 100%;
+  }
+  
+  .example-full-width {
+    width: 100%;
+  }
+  mat-form-field {
+    width: 100%;
+}
+.tournament-details p{font-size: 14px;}
+.tournament-details-inner {
+    box-shadow: 0 0 5px -2px black;
+    border-left: 4px solid #002065;
+}

@@ -1,0 +1,96 @@
+<app-toolbarpage></app-toolbarpage>
+<section class="show-tournament">
+  <section class="show-tournament-header bg-light mt-68">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12">
+         <h4 class="py-3">Tournament</h4>
+        </div>
+      </div>
+    </div> 
+  </section>  
+  <section class="show-tournament-inner py-5">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12">
+          <form class="example-form">
+            <div class="d-flex">
+              <mat-form-field class="example-full-width">
+                <input matInput placeholder="Tournaments">
+              </mat-form-field>
+              <div class="example-button-row my-2 my-lg-0 ml-2">
+                <button mat-raised-button color="accent" routerLink="/Home/create-tournament">Create Tournament</button>
+              </div>
+            </div>
+            </form>
+        </div>
+      </div>
+
+
+        <div class="tournament-details my-3">
+          <div class="row">   
+ 
+            <div class="col-md-6" *ngFor="let tournamentRes of tournament">
+             <div class="tournament-details-inner p-4">
+              <div><h5 class="primary-text"><i class="fa fa-soccer-ball-o mr-2"></i>{{ tournamentRes.event_name }}</h5></div>
+              <p>{{ tournamentRes.sport_description }}</p> 
+              <div><p><i class="fa fa-calendar mr-2" aria-hidden="true" style="font-size:1rem;"></i> {{ ServerTimestamp(tournamentRes.start_date)}} To {{ ServerTimestamp(tournamentRes.end_date)}}</p></div> 
+              <div><p class="text-success"><i class="fa fa-check-circle mr-2" aria-hidden="true" style="font-size:1rem;"></i>Published<mat-slide-toggle class="float-right"></mat-slide-toggle></p></div>
+              <hr>
+                <div class="row">
+                  <div class="col-md-3">
+                    <p><i class="fa fa-cogs mr-1" aria-hidden="true"></i>Manage</p>
+                  </div>
+                  <div class="col-md-3">
+                    <p><i class="fa fa-pencil-square-o mr-1" aria-hidden="true"></i>Edit</p>
+                  </div>
+                  <div class="col-md-3">
+                    <p><i class="fa fa-clone mr-1" aria-hidden="true"></i>Clone</p>
+                  </div>
+                  <div class="col-md-3">
+                    <p><i class="fa fa-trash mr-1" aria-hidden="true"></i>Delete</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- <div class="col-md-6">
+                <div class="tournament-details-inner p-4">
+                 <div><h5 class="primary-text"><i class="fa fa-soccer-ball-o mr-2"></i>Boys 3rd / 9U Gold</h5></div>
+                 <p>Boys 3rd / 9U Gold | Boys 3rd / 9U Gold | Boys 3rd / 9U Gold | Boys 3rd / 9U Gold</p>
+                 <div><p><i class="fa fa-calendar mr-2" aria-hidden="true" style="font-size:1rem;"></i>Sep 28,2019 To Sep 29,2019</p></div>
+                 <div><p class="text-success"><i class="fa fa-check-circle mr-2" aria-hidden="true" style="font-size:1rem;"></i>Published<mat-slide-toggle class="float-right"></mat-slide-toggle></p></div>
+                 <hr>
+                   <div class="row">
+                     <div class="col-md-3">
+                       <p><i class="fa fa-cogs mr-1" aria-hidden="true"></i>Manage</p>
+                     </div>
+                     <div class="col-md-3">
+                       <p><i class="fa fa-pencil-square-o mr-1" aria-hidden="true"></i>Edit</p>
+                     </div>
+                     <div class="col-md-3">
+                       <p><i class="fa fa-clone mr-1" aria-hidden="true"></i>Clone</p>
+                     </div>
+                     <div class="col-md-3">
+                       <p><i class="fa fa-trash mr-1" aria-hidden="true"></i>Delete</p>
+                     </div>
+                   </div>
+                 </div>
+               </div> -->
+
+          </div>
+        </div>
+
+
+        
+   
+
+
+     
+    </div>
+  </section>
+
+
+    
+</section>
+<app-footer></app-footer>

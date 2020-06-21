@@ -1,0 +1,19 @@
+
+<div class="dialogpopup">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12">
+          <div mat-dialog-content>
+            <p>Enter the name for the division label.</p>
+              <mat-form-field class="custom-width">
+                <input matInput [(ngModel)]="divisionname">
+              </mat-form-field>
+            </div>
+            <div mat-dialog-actions >
+              <button mat-raised-button class="btn-custom-color" (click)="onNoClick()">Cancel</button>
+              <button mat-raised-button (click)="onNoClickBtn()" cdkFocusInitial class="btn-color-green ml-3" >Ok</button>
+            </div>
+        </div>
+      </div>
+    </div>
+  </div>

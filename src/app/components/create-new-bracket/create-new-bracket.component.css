@@ -1,0 +1,42 @@
+.mt-100{margin-top:100px}
+mat-form-field{width: 100%}
+.pl-7{padding-left: 7rem;}
+td {
+    width: 315px;
+    height: 35px;
+}
+
+
+.clockspace { 
+    width: 150px;
+    padding-top: 17px;
+  }
+  .custom-date-fix{
+    border-bottom: 1px solid #989696;
+    font-family: sans-serif !important;
+  }
+  
+  /* .button-custom {
+    position: absolute;
+     bottom: 320px;
+    float: right;
+    right: 3px;
+  }      */
+
+  .button-custom{
+    position: relative;
+    bottom: 0!important;
+    float: right;
+    margin-top: -57px;
+}
+
+
+     
+
+.custom-radio-team {
+  font-size: 14px;
+  display: block;
+}
+::ng-deep .mat-horizontal-stepper-header{
+  pointer-events: none !important;
+}

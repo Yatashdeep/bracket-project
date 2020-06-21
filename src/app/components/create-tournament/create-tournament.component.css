@@ -1,0 +1,269 @@
+.create-tournament{
+  padding-top: 125px;
+}
+.mat-form-field {
+  width: 100%;
+}
+.example-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.example-container > * {
+  width: 80%;
+}
+mat-form-field {
+  margin-right: 12px;
+}
+.stepper-button {
+  margin-left: 15px;
+} 
+.create-tournament-col1.example-container mat-form-field {
+padding: 20px 0;
+}
+.mat-form-field{
+/* width: 88%; */
+padding: 20px 0;
+}
+.custom-msg {
+padding-top: 28px;
+}
+.stepper-header-3{font-size: 25px;font-weight: 700;}
+
+/* Modal CSS */
+.tournament-venue .modal-content {
+width: 90%;
+  margin-left: auto;
+margin-right: auto;
+}
+.tournament-venue .modal-dialog[_ngcontent-clr-c1] {
+max-width: 1100px;
+}
+.modal-title {
+margin-bottom: 0;
+line-height: 1.5;
+font-size: 26px;
+text-align: right;
+margin-left: auto;
+}
+
+.modal-header .close {
+padding: 1rem 1rem;
+margin: -1rem -1rem -1rem auto;
+color: #fff;
+}
+.modal-content {
+
+border: none; 
+}
+
+.modal-dialog {
+  max-width: 1251px;
+  margin: 1.75rem auto;
+}
+.modal-header.header-color {
+background: #002065;
+}
+.modal .mat-form-field{
+width: 100%;
+}
+table {
+width: 100%;
+} 
+.venue-dates-content p {
+margin: 3px 0;
+}
+.example-radio-button {
+margin: 5px;
+}
+.example-radio-group[_ngcontent-mss-c1] {
+display: flex;
+flex-direction: column;
+font-size: 14px;
+}
+.radio-font {
+font-size: 14px;
+display: block;
+}
+
+input:focus, textarea {
+outline: none !important;
+}
+.inputtime {
+width: 50%;
+border: none;
+border-bottom: 1px solid #949494 !important;
+padding-top: 20px;
+}
+.optionselect { 
+margin-top: 27px;
+border: 0 !important; 
+border-bottom: 1px solid #7b7d7f !important;
+border-radius: 0rem !important;
+color: #868484;
+}
+.custom-font {
+font-size: 13px;
+color: #9b9898;
+}
+form.container.court-field mat-form-field {
+padding: 4px 0 0px!important;
+}
+.mat-form-field.custom-field {
+padding: 0;
+}
+.venue-notes .mat-form-field-infix {
+padding: 2.2em 0!important;
+}
+.modal{
+z-index: 20;   
+}
+.input-custom{
+border-bottom: 1px solid #959292!important;
+position: relative;
+}
+.button-custom {
+position: absolute;
+bottom: 40px;
+left: 133px;
+}
+.button-custom1 {
+position: absolute;
+bottom: 17px;
+left: 133px;
+}
+.button-custom2 {
+position: absolute;
+bottom: 17px; 
+left: 133px;
+}
+.default-time-example {
+width: 150px;
+padding-top: 17px;
+}
+.default-time-example1 {
+width: 150px;
+}
+.default-time-example2 {
+width: 150px;
+}
+
+.custom-timepicker{
+position: absolute;
+background: #fff;
+padding: 0 22px;
+box-shadow: 0px 0 10px -3px black;
+border-radius: 10px;
+left: 0;
+bottom: -73px;
+z-index: 1;
+}
+pre.custom-date-fix {
+border-bottom: 1px solid #989696;
+font-family: sans-serif!important;
+}
+
+.bottom-99 {
+position: absolute;
+background: #fff;
+padding: 0 22px;
+box-shadow: 0px 0 10px -3px black;
+border-radius: 10px;
+left: 0;
+bottom: -96px;
+z-index: 1;
+}
+
+
+
+
+.card-header {
+font-size: 14px;
+}
+
+.card-header-mat{
+background: #fff;
+padding: 4px 7px;
+border-radius: 30px;
+}
+.card-header span { 
+padding: 0 7px;
+}
+i.fa.fa-pencil-square-o {  
+background: #fff;
+padding: 9px 10px 7px 9px;
+border-radius: 30px;
+}
+i.fa.fa-trash{
+background: #fff;
+padding: 9px 10px 7px 9px;
+border-radius: 30px;
+}
+.card {
+padding: 24px 6px;
+}
+.card-inner {
+font-size: 14px;
+}
+.card-1{
+box-shadow: 0 1px 5px -3px black;
+}
+.card-p{margin: 5px 0 0 -14px;}
+
+.tournament-icon {
+position: absolute;
+/* top: 50%; */
+/* left: 50%; */
+/* transform: translate(-50%, -50%); */
+/* max-width: 100%; */
+/* max-height: 100%; */
+bottom:10%;
+width:100%;
+}
+.mat-dialog-container {
+padding: 0px !important;  
+}
+.logo-upload{
+width: 100px;
+height: auto;
+}
+
+/* media Query */
+@media (max-width:767px){
+.card-header span {
+  padding: 0px;
+  }
+  .example-container > * {
+    width: 100%;
+  }
+  .create-tournament {
+    padding-top: 80px;
+  }
+  .tournament-icon {
+    position: relative;
+    bottom: 10%;
+    width: 100%;
+  }
+  .button-custom{
+    bottom: 20px;
+  }
+  .custom-timepicker {
+    bottom: -100px;
+  }
+  /* mat-form-field.mat-form-field {
+    padding: 0;
+} */
+.create-tournament-col1.example-container mat-form-field {
+  padding: 0;
+}
+.mat-form-field{
+  padding: 0;
+}
+}
+.mat-dialog-container {
+padding: 0px!important;
+}
+
+::ng-deep .mat-horizontal-stepper-header{
+  pointer-events: none !important;
+}
